@@ -3,7 +3,7 @@
     "description": "百度网盘开发平台API",
     "homepage": "https://www.github.com/clainy/openxpan-apiclient-php",
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^7.4 || ^8.0 || ^8.1",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
