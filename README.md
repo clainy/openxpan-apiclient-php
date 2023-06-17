@@ -1,4 +1,4 @@
-# OpenAPIClient-php
+# openxpan-apiclient-php
 
 API for accessing XPan NAS data
 
@@ -19,11 +19,11 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+      "url": "https://github.com/clainy/openxpan-apiclient-php.git"
     }
   ],
   "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+    "clainy/openxpan-apiclient-php": "*@dev"
   }
 }
 ```
@@ -36,7 +36,7 @@ Download the files and include `autoload.php`:
 
 ```php
 <?php
-require_once('/path/to/OpenAPIClient-php/vendor/autoload.php');
+require_once('/path/to/openxpan-apiclient-php/vendor/autoload.php');
 ```
 
 ## Getting Started
@@ -49,19 +49,24 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
+// Configure API key authorization: ApiKeyName
+$config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->setApiKey('access_token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('access_token', 'Bearer');
+
 
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
-$access_token = 'access_token_example'; // string | 接口鉴权参数
 $parent_path = 'parent_path_example'; // string | 目录名称，为空时，parent_path = \"/\" && recursion = 1
 $recursion = 56; // int | 是否递归，0 不递归、1 递归，默认0
 $category = 56; // int | 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子
 
 try {
-    $result = $apiInstance->apiCategoryinfo($access_token, $parent_path, $recursion, $category);
+    $result = $apiInstance->apiCategoryinfo($parent_path, $recursion, $category);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->apiCategoryinfo: ', $e->getMessage(), PHP_EOL;
@@ -71,7 +76,7 @@ try {
 
 ## API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://pan.baidu.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -115,7 +120,14 @@ Class | Method | HTTP request | Description
 - [XpanNasUinfo200Response](docs/Model/XpanNasUinfo200Response.md)
 
 ## Authorization
-Endpoints do not require authorization.
+
+Authentication schemes defined for the API:
+### ApiKeyName
+
+- **Type**: API key
+- **API key parameter name**: access_token
+- **Location**: URL query string
+
 
 ## Tests
 

@@ -172,7 +172,6 @@ class DefaultApi
      *
      * 获取分类文件总个数
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
      * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
@@ -182,9 +181,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\ApiCategoryinfo200Response
      */
-    public function apiCategoryinfo($access_token, $parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfo($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
-        list($response) = $this->apiCategoryinfoWithHttpInfo($access_token, $parent_path, $recursion, $category, $contentType);
+        list($response) = $this->apiCategoryinfoWithHttpInfo($parent_path, $recursion, $category, $contentType);
         return $response;
     }
 
@@ -193,7 +192,6 @@ class DefaultApi
      *
      * 获取分类文件总个数
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
      * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
@@ -203,9 +201,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\ApiCategoryinfo200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiCategoryinfoWithHttpInfo($access_token, $parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoWithHttpInfo($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
-        $request = $this->apiCategoryinfoRequest($access_token, $parent_path, $recursion, $category, $contentType);
+        $request = $this->apiCategoryinfoRequest($parent_path, $recursion, $category, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -296,7 +294,6 @@ class DefaultApi
      *
      * 获取分类文件总个数
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
      * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
@@ -305,9 +302,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiCategoryinfoAsync($access_token, $parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoAsync($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
-        return $this->apiCategoryinfoAsyncWithHttpInfo($access_token, $parent_path, $recursion, $category, $contentType)
+        return $this->apiCategoryinfoAsyncWithHttpInfo($parent_path, $recursion, $category, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -320,7 +317,6 @@ class DefaultApi
      *
      * 获取分类文件总个数
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
      * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
@@ -329,10 +325,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiCategoryinfoAsyncWithHttpInfo($access_token, $parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoAsyncWithHttpInfo($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\ApiCategoryinfo200Response';
-        $request = $this->apiCategoryinfoRequest($access_token, $parent_path, $recursion, $category, $contentType);
+        $request = $this->apiCategoryinfoRequest($parent_path, $recursion, $category, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -373,7 +369,6 @@ class DefaultApi
     /**
      * Create request for operation 'apiCategoryinfo'
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
      * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
@@ -382,15 +377,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiCategoryinfoRequest($access_token, $parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoRequest($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling apiCategoryinfo'
-            );
-        }
 
         // verify the required parameter 'parent_path' is set
         if ($parent_path === null || (is_array($parent_path) && count($parent_path) === 0)) {
@@ -415,15 +403,6 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $category,
@@ -486,6 +465,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -502,7 +486,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -513,7 +497,6 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
      * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
@@ -522,9 +505,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\ApiQuota200Response
      */
-    public function apiQuota($access_token, $checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuota($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
     {
-        list($response) = $this->apiQuotaWithHttpInfo($access_token, $checkfree, $checkexpire, $contentType);
+        list($response) = $this->apiQuotaWithHttpInfo($checkfree, $checkexpire, $contentType);
         return $response;
     }
 
@@ -533,7 +516,6 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
      * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
@@ -542,9 +524,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\ApiQuota200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiQuotaWithHttpInfo($access_token, $checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaWithHttpInfo($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
     {
-        $request = $this->apiQuotaRequest($access_token, $checkfree, $checkexpire, $contentType);
+        $request = $this->apiQuotaRequest($checkfree, $checkexpire, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -635,7 +617,6 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
      * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
@@ -643,9 +624,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiQuotaAsync($access_token, $checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaAsync($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
     {
-        return $this->apiQuotaAsyncWithHttpInfo($access_token, $checkfree, $checkexpire, $contentType)
+        return $this->apiQuotaAsyncWithHttpInfo($checkfree, $checkexpire, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -658,7 +639,6 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
      * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
@@ -666,10 +646,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiQuotaAsyncWithHttpInfo($access_token, $checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaAsyncWithHttpInfo($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\ApiQuota200Response';
-        $request = $this->apiQuotaRequest($access_token, $checkfree, $checkexpire, $contentType);
+        $request = $this->apiQuotaRequest($checkfree, $checkexpire, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -710,7 +690,6 @@ class DefaultApi
     /**
      * Create request for operation 'apiQuota'
      *
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
      * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
@@ -718,15 +697,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiQuotaRequest($access_token, $checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaRequest($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
     {
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling apiQuota'
-            );
-        }
 
         // verify the required parameter 'checkfree' is set
         if ($checkfree === null || (is_array($checkfree) && count($checkfree) === 0)) {
@@ -750,15 +722,6 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $checkfree,
@@ -812,6 +775,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -828,7 +796,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -839,8 +807,6 @@ class DefaultApi
      *
      * 分片上传
      *
-     * @param  string $method 本接口固定为upload (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  string $type 固定值 tmpfile (optional)
      * @param  string $path 上传后使用的文件绝对路径，需要urlencode，需要与上一个阶段预上传precreate接口中的path保持一致 (optional)
      * @param  string $uploadid 上一个阶段预上传precreate接口下发的uploadid (optional)
@@ -852,9 +818,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\PcsSuperfile2Upload200Response
      */
-    public function pcsSuperfile2Upload($method, $access_token, $type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
+    public function pcsSuperfile2Upload($type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
     {
-        list($response) = $this->pcsSuperfile2UploadWithHttpInfo($method, $access_token, $type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType);
+        list($response) = $this->pcsSuperfile2UploadWithHttpInfo($type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType);
         return $response;
     }
 
@@ -863,8 +829,6 @@ class DefaultApi
      *
      * 分片上传
      *
-     * @param  string $method 本接口固定为upload (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  string $type 固定值 tmpfile (optional)
      * @param  string $path 上传后使用的文件绝对路径，需要urlencode，需要与上一个阶段预上传precreate接口中的path保持一致 (optional)
      * @param  string $uploadid 上一个阶段预上传precreate接口下发的uploadid (optional)
@@ -876,9 +840,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\PcsSuperfile2Upload200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function pcsSuperfile2UploadWithHttpInfo($method, $access_token, $type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
+    public function pcsSuperfile2UploadWithHttpInfo($type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
     {
-        $request = $this->pcsSuperfile2UploadRequest($method, $access_token, $type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType);
+        $request = $this->pcsSuperfile2UploadRequest($type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -969,8 +933,6 @@ class DefaultApi
      *
      * 分片上传
      *
-     * @param  string $method 本接口固定为upload (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  string $type 固定值 tmpfile (optional)
      * @param  string $path 上传后使用的文件绝对路径，需要urlencode，需要与上一个阶段预上传precreate接口中的path保持一致 (optional)
      * @param  string $uploadid 上一个阶段预上传precreate接口下发的uploadid (optional)
@@ -981,9 +943,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function pcsSuperfile2UploadAsync($method, $access_token, $type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
+    public function pcsSuperfile2UploadAsync($type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
     {
-        return $this->pcsSuperfile2UploadAsyncWithHttpInfo($method, $access_token, $type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType)
+        return $this->pcsSuperfile2UploadAsyncWithHttpInfo($type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -996,8 +958,6 @@ class DefaultApi
      *
      * 分片上传
      *
-     * @param  string $method 本接口固定为upload (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  string $type 固定值 tmpfile (optional)
      * @param  string $path 上传后使用的文件绝对路径，需要urlencode，需要与上一个阶段预上传precreate接口中的path保持一致 (optional)
      * @param  string $uploadid 上一个阶段预上传precreate接口下发的uploadid (optional)
@@ -1008,10 +968,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function pcsSuperfile2UploadAsyncWithHttpInfo($method, $access_token, $type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
+    public function pcsSuperfile2UploadAsyncWithHttpInfo($type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\PcsSuperfile2Upload200Response';
-        $request = $this->pcsSuperfile2UploadRequest($method, $access_token, $type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType);
+        $request = $this->pcsSuperfile2UploadRequest($type, $path, $uploadid, $partseq, $post_pcs_superfile2_upload, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1052,8 +1012,6 @@ class DefaultApi
     /**
      * Create request for operation 'pcsSuperfile2Upload'
      *
-     * @param  string $method 本接口固定为upload (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  string $type 固定值 tmpfile (optional)
      * @param  string $path 上传后使用的文件绝对路径，需要urlencode，需要与上一个阶段预上传precreate接口中的path保持一致 (optional)
      * @param  string $uploadid 上一个阶段预上传precreate接口下发的uploadid (optional)
@@ -1064,54 +1022,22 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function pcsSuperfile2UploadRequest($method, $access_token, $type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
+    public function pcsSuperfile2UploadRequest($type = null, $path = null, $uploadid = null, $partseq = null, $post_pcs_superfile2_upload = null, string $contentType = self::contentTypes['pcsSuperfile2Upload'][0])
     {
 
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling pcsSuperfile2Upload'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling pcsSuperfile2Upload'
-            );
-        }
 
 
 
 
 
 
-
-        $resourcePath = '/rest/2.0/pcs/superfile2/method/upload';
+        $resourcePath = '/rest/2.0/pcs/superfile2?method=upload';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $type,
@@ -1190,6 +1116,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1206,7 +1137,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -1217,8 +1148,6 @@ class DefaultApi
      *
      * 获取bt列表
      *
-     * @param  string $method 本接口固定为btlist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -1231,9 +1160,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileBtlist($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlist($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
-        list($response) = $this->xpanFileBtlistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $contentType);
+        list($response) = $this->xpanFileBtlistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $contentType);
         return $response;
     }
 
@@ -1242,8 +1171,6 @@ class DefaultApi
      *
      * 获取bt列表
      *
-     * @param  string $method 本接口固定为btlist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -1256,9 +1183,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileBtlistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
-        $request = $this->xpanFileBtlistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $contentType);
+        $request = $this->xpanFileBtlistRequest($parent_path, $page, $num, $order, $desc, $recursion, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1349,8 +1276,6 @@ class DefaultApi
      *
      * 获取bt列表
      *
-     * @param  string $method 本接口固定为btlist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -1362,9 +1287,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileBtlistAsync($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistAsync($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
-        return $this->xpanFileBtlistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $contentType)
+        return $this->xpanFileBtlistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1377,8 +1302,6 @@ class DefaultApi
      *
      * 获取bt列表
      *
-     * @param  string $method 本接口固定为btlist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -1390,10 +1313,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileBtlistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
-        $request = $this->xpanFileBtlistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $contentType);
+        $request = $this->xpanFileBtlistRequest($parent_path, $page, $num, $order, $desc, $recursion, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1434,8 +1357,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileBtlist'
      *
-     * @param  string $method 本接口固定为btlist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -1447,22 +1368,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileBtlistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistRequest($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileBtlist'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileBtlist'
-            );
-        }
 
         // verify the required parameter 'parent_path' is set
         if ($parent_path === null || (is_array($parent_path) && count($parent_path) === 0)) {
@@ -1507,31 +1414,13 @@ class DefaultApi
         }
 
 
-        $resourcePath = '/rest/2.0/xpan/file/method/btlist';
+        $resourcePath = '/rest/2.0/xpan/file?method=btlist';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $parent_path,
@@ -1621,6 +1510,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1637,7 +1531,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -1648,8 +1542,6 @@ class DefaultApi
      *
      * 创建文件, 创建文件夹
      *
-     * @param  string $method 本接口固定为create (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileCreate $post_xpan_file_create post_xpan_file_create (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileCreate'] to see the possible values for this operation
      *
@@ -1657,9 +1549,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileCreate200Response
      */
-    public function xpanFileCreate($method, $access_token, $post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
+    public function xpanFileCreate($post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
     {
-        list($response) = $this->xpanFileCreateWithHttpInfo($method, $access_token, $post_xpan_file_create, $contentType);
+        list($response) = $this->xpanFileCreateWithHttpInfo($post_xpan_file_create, $contentType);
         return $response;
     }
 
@@ -1668,8 +1560,6 @@ class DefaultApi
      *
      * 创建文件, 创建文件夹
      *
-     * @param  string $method 本接口固定为create (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileCreate $post_xpan_file_create (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileCreate'] to see the possible values for this operation
      *
@@ -1677,9 +1567,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileCreate200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileCreateWithHttpInfo($method, $access_token, $post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
+    public function xpanFileCreateWithHttpInfo($post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
     {
-        $request = $this->xpanFileCreateRequest($method, $access_token, $post_xpan_file_create, $contentType);
+        $request = $this->xpanFileCreateRequest($post_xpan_file_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1770,17 +1660,15 @@ class DefaultApi
      *
      * 创建文件, 创建文件夹
      *
-     * @param  string $method 本接口固定为create (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileCreate $post_xpan_file_create (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileCreateAsync($method, $access_token, $post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
+    public function xpanFileCreateAsync($post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
     {
-        return $this->xpanFileCreateAsyncWithHttpInfo($method, $access_token, $post_xpan_file_create, $contentType)
+        return $this->xpanFileCreateAsyncWithHttpInfo($post_xpan_file_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1793,18 +1681,16 @@ class DefaultApi
      *
      * 创建文件, 创建文件夹
      *
-     * @param  string $method 本接口固定为create (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileCreate $post_xpan_file_create (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileCreateAsyncWithHttpInfo($method, $access_token, $post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
+    public function xpanFileCreateAsyncWithHttpInfo($post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileCreate200Response';
-        $request = $this->xpanFileCreateRequest($method, $access_token, $post_xpan_file_create, $contentType);
+        $request = $this->xpanFileCreateRequest($post_xpan_file_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1845,58 +1731,24 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileCreate'
      *
-     * @param  string $method 本接口固定为create (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileCreate $post_xpan_file_create (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileCreateRequest($method, $access_token, $post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
+    public function xpanFileCreateRequest($post_xpan_file_create = null, string $contentType = self::contentTypes['xpanFileCreate'][0])
     {
 
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileCreate'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileCreate'
-            );
-        }
 
 
-
-        $resourcePath = '/rest/2.0/xpan/file/method/create';
+        $resourcePath = '/rest/2.0/xpan/file?method=create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
 
@@ -1939,6 +1791,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1955,7 +1812,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -1966,8 +1823,6 @@ class DefaultApi
      *
      * 获取文档列表
      *
-     * @param  string $method 本接口固定为doclist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
@@ -1981,9 +1836,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileDoclist($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclist($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
-        list($response) = $this->xpanFileDoclistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        list($response) = $this->xpanFileDoclistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
         return $response;
     }
 
@@ -1992,8 +1847,6 @@ class DefaultApi
      *
      * 获取文档列表
      *
-     * @param  string $method 本接口固定为doclist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
@@ -2007,9 +1860,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileDoclistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
-        $request = $this->xpanFileDoclistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileDoclistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2100,8 +1953,6 @@ class DefaultApi
      *
      * 获取文档列表
      *
-     * @param  string $method 本接口固定为doclist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
@@ -2114,9 +1965,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileDoclistAsync($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistAsync($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
-        return $this->xpanFileDoclistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
+        return $this->xpanFileDoclistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2129,8 +1980,6 @@ class DefaultApi
      *
      * 获取文档列表
      *
-     * @param  string $method 本接口固定为doclist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
@@ -2143,10 +1992,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileDoclistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
-        $request = $this->xpanFileDoclistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileDoclistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2187,8 +2036,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileDoclist'
      *
-     * @param  string $method 本接口固定为doclist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
@@ -2201,22 +2048,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileDoclistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileDoclist'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileDoclist'
-            );
-        }
 
         // verify the required parameter 'parent_path' is set
         if ($parent_path === null || (is_array($parent_path) && count($parent_path) === 0)) {
@@ -2268,31 +2101,13 @@ class DefaultApi
         }
 
 
-        $resourcePath = '/rest/2.0/xpan/file/method/doclist';
+        $resourcePath = '/rest/2.0/xpan/file?method=doclist';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $parent_path,
@@ -2391,6 +2206,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2407,7 +2227,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -2418,8 +2238,6 @@ class DefaultApi
      *
      * 管理文件
      *
-     * @param  string $method 本接口固定为filemanager (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $opera 文件操作参数，可实现文件复制、移动、重命名、删除，依次对应的参数值为：copy、move、rename、delete (optional)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileFilemanager $post_xpan_file_filemanager post_xpan_file_filemanager (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileFilemanager'] to see the possible values for this operation
@@ -2428,9 +2246,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileFilemanager200Response
      */
-    public function xpanFileFilemanager($method, $access_token, $opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
+    public function xpanFileFilemanager($opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
     {
-        list($response) = $this->xpanFileFilemanagerWithHttpInfo($method, $access_token, $opera, $post_xpan_file_filemanager, $contentType);
+        list($response) = $this->xpanFileFilemanagerWithHttpInfo($opera, $post_xpan_file_filemanager, $contentType);
         return $response;
     }
 
@@ -2439,8 +2257,6 @@ class DefaultApi
      *
      * 管理文件
      *
-     * @param  string $method 本接口固定为filemanager (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $opera 文件操作参数，可实现文件复制、移动、重命名、删除，依次对应的参数值为：copy、move、rename、delete (optional)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileFilemanager $post_xpan_file_filemanager (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileFilemanager'] to see the possible values for this operation
@@ -2449,9 +2265,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileFilemanager200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileFilemanagerWithHttpInfo($method, $access_token, $opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
+    public function xpanFileFilemanagerWithHttpInfo($opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
     {
-        $request = $this->xpanFileFilemanagerRequest($method, $access_token, $opera, $post_xpan_file_filemanager, $contentType);
+        $request = $this->xpanFileFilemanagerRequest($opera, $post_xpan_file_filemanager, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2542,8 +2358,6 @@ class DefaultApi
      *
      * 管理文件
      *
-     * @param  string $method 本接口固定为filemanager (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $opera 文件操作参数，可实现文件复制、移动、重命名、删除，依次对应的参数值为：copy、move、rename、delete (optional)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileFilemanager $post_xpan_file_filemanager (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileFilemanager'] to see the possible values for this operation
@@ -2551,9 +2365,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileFilemanagerAsync($method, $access_token, $opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
+    public function xpanFileFilemanagerAsync($opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
     {
-        return $this->xpanFileFilemanagerAsyncWithHttpInfo($method, $access_token, $opera, $post_xpan_file_filemanager, $contentType)
+        return $this->xpanFileFilemanagerAsyncWithHttpInfo($opera, $post_xpan_file_filemanager, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2566,8 +2380,6 @@ class DefaultApi
      *
      * 管理文件
      *
-     * @param  string $method 本接口固定为filemanager (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $opera 文件操作参数，可实现文件复制、移动、重命名、删除，依次对应的参数值为：copy、move、rename、delete (optional)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileFilemanager $post_xpan_file_filemanager (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileFilemanager'] to see the possible values for this operation
@@ -2575,10 +2387,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileFilemanagerAsyncWithHttpInfo($method, $access_token, $opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
+    public function xpanFileFilemanagerAsyncWithHttpInfo($opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileFilemanager200Response';
-        $request = $this->xpanFileFilemanagerRequest($method, $access_token, $opera, $post_xpan_file_filemanager, $contentType);
+        $request = $this->xpanFileFilemanagerRequest($opera, $post_xpan_file_filemanager, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2619,8 +2431,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileFilemanager'
      *
-     * @param  string $method 本接口固定为filemanager (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $opera 文件操作参数，可实现文件复制、移动、重命名、删除，依次对应的参数值为：copy、move、rename、delete (optional)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFileFilemanager $post_xpan_file_filemanager (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileFilemanager'] to see the possible values for this operation
@@ -2628,51 +2438,19 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileFilemanagerRequest($method, $access_token, $opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
+    public function xpanFileFilemanagerRequest($opera = null, $post_xpan_file_filemanager = null, string $contentType = self::contentTypes['xpanFileFilemanager'][0])
     {
 
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileFilemanager'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileFilemanager'
-            );
-        }
 
 
 
-
-        $resourcePath = '/rest/2.0/xpan/file/method/filemanager';
+        $resourcePath = '/rest/2.0/xpan/file?method=filemanager';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $opera,
@@ -2724,6 +2502,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2740,7 +2523,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -2751,8 +2534,6 @@ class DefaultApi
      *
      * 获取图片列表
      *
-     * @param  string $method 本接口固定为imagelist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
@@ -2766,9 +2547,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileImagelist($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelist($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
-        list($response) = $this->xpanFileImagelistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        list($response) = $this->xpanFileImagelistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
         return $response;
     }
 
@@ -2777,8 +2558,6 @@ class DefaultApi
      *
      * 获取图片列表
      *
-     * @param  string $method 本接口固定为imagelist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
@@ -2792,9 +2571,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileImagelistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
-        $request = $this->xpanFileImagelistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileImagelistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2885,8 +2664,6 @@ class DefaultApi
      *
      * 获取图片列表
      *
-     * @param  string $method 本接口固定为imagelist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
@@ -2899,9 +2676,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileImagelistAsync($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistAsync($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
-        return $this->xpanFileImagelistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
+        return $this->xpanFileImagelistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2914,8 +2691,6 @@ class DefaultApi
      *
      * 获取图片列表
      *
-     * @param  string $method 本接口固定为imagelist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
@@ -2928,10 +2703,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileImagelistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
-        $request = $this->xpanFileImagelistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileImagelistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2972,8 +2747,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileImagelist'
      *
-     * @param  string $method 本接口固定为imagelist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
@@ -2986,22 +2759,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileImagelistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileImagelist'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileImagelist'
-            );
-        }
 
         // verify the required parameter 'parent_path' is set
         if ($parent_path === null || (is_array($parent_path) && count($parent_path) === 0)) {
@@ -3053,31 +2812,13 @@ class DefaultApi
         }
 
 
-        $resourcePath = '/rest/2.0/xpan/file/method/imagelist';
+        $resourcePath = '/rest/2.0/xpan/file?method=imagelist';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $parent_path,
@@ -3176,6 +2917,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -3192,7 +2938,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -3203,8 +2949,6 @@ class DefaultApi
      *
      * 获取文件列表
      *
-     * @param  string $method 本接口固定为list (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
      * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
@@ -3219,9 +2963,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileList200Response
      */
-    public function xpanFileList($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileList($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
     {
-        list($response) = $this->xpanFileListWithHttpInfo($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
+        list($response) = $this->xpanFileListWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
         return $response;
     }
 
@@ -3230,8 +2974,6 @@ class DefaultApi
      *
      * 获取文件列表
      *
-     * @param  string $method 本接口固定为list (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
      * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
@@ -3246,9 +2988,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileList200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileListWithHttpInfo($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
     {
-        $request = $this->xpanFileListRequest($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
+        $request = $this->xpanFileListRequest($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3339,8 +3081,6 @@ class DefaultApi
      *
      * 获取文件列表
      *
-     * @param  string $method 本接口固定为list (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
      * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
@@ -3354,9 +3094,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileListAsync($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListAsync($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
     {
-        return $this->xpanFileListAsyncWithHttpInfo($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType)
+        return $this->xpanFileListAsyncWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3369,8 +3109,6 @@ class DefaultApi
      *
      * 获取文件列表
      *
-     * @param  string $method 本接口固定为list (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
      * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
@@ -3384,10 +3122,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileListAsyncWithHttpInfo($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListAsyncWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileList200Response';
-        $request = $this->xpanFileListRequest($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
+        $request = $this->xpanFileListRequest($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3428,8 +3166,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileList'
      *
-     * @param  string $method 本接口固定为list (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
      * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
@@ -3443,22 +3179,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileListRequest($method, $access_token, $dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListRequest($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileList'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileList'
-            );
-        }
 
         // verify the required parameter 'dir' is set
         if ($dir === null || (is_array($dir) && count($dir) === 0)) {
@@ -3517,31 +3239,13 @@ class DefaultApi
         }
 
 
-        $resourcePath = '/rest/2.0/xpan/file/method/list';
+        $resourcePath = '/rest/2.0/xpan/file?method=list';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $dir,
@@ -3649,6 +3353,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -3665,7 +3374,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -3676,8 +3385,6 @@ class DefaultApi
      *
      * 预上传
      *
-     * @param  string $method 本接口固定为precreate (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFilePrecreate $post_xpan_file_precreate post_xpan_file_precreate (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFilePrecreate'] to see the possible values for this operation
      *
@@ -3685,9 +3392,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFilePrecreate200Response
      */
-    public function xpanFilePrecreate($method, $access_token, $post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
+    public function xpanFilePrecreate($post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
     {
-        list($response) = $this->xpanFilePrecreateWithHttpInfo($method, $access_token, $post_xpan_file_precreate, $contentType);
+        list($response) = $this->xpanFilePrecreateWithHttpInfo($post_xpan_file_precreate, $contentType);
         return $response;
     }
 
@@ -3696,8 +3403,6 @@ class DefaultApi
      *
      * 预上传
      *
-     * @param  string $method 本接口固定为precreate (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFilePrecreate $post_xpan_file_precreate (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFilePrecreate'] to see the possible values for this operation
      *
@@ -3705,9 +3410,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFilePrecreate200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFilePrecreateWithHttpInfo($method, $access_token, $post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
+    public function xpanFilePrecreateWithHttpInfo($post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
     {
-        $request = $this->xpanFilePrecreateRequest($method, $access_token, $post_xpan_file_precreate, $contentType);
+        $request = $this->xpanFilePrecreateRequest($post_xpan_file_precreate, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3798,17 +3503,15 @@ class DefaultApi
      *
      * 预上传
      *
-     * @param  string $method 本接口固定为precreate (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFilePrecreate $post_xpan_file_precreate (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFilePrecreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFilePrecreateAsync($method, $access_token, $post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
+    public function xpanFilePrecreateAsync($post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
     {
-        return $this->xpanFilePrecreateAsyncWithHttpInfo($method, $access_token, $post_xpan_file_precreate, $contentType)
+        return $this->xpanFilePrecreateAsyncWithHttpInfo($post_xpan_file_precreate, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3821,18 +3524,16 @@ class DefaultApi
      *
      * 预上传
      *
-     * @param  string $method 本接口固定为precreate (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFilePrecreate $post_xpan_file_precreate (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFilePrecreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFilePrecreateAsyncWithHttpInfo($method, $access_token, $post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
+    public function xpanFilePrecreateAsyncWithHttpInfo($post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFilePrecreate200Response';
-        $request = $this->xpanFilePrecreateRequest($method, $access_token, $post_xpan_file_precreate, $contentType);
+        $request = $this->xpanFilePrecreateRequest($post_xpan_file_precreate, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3873,58 +3574,24 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFilePrecreate'
      *
-     * @param  string $method 本接口固定为precreate (required)
-     * @param  string $access_token 接口鉴权认证参数，标识用户 (required)
      * @param  \Clainy\OpenxpanApiClient\Model\PostXpanFilePrecreate $post_xpan_file_precreate (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFilePrecreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFilePrecreateRequest($method, $access_token, $post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
+    public function xpanFilePrecreateRequest($post_xpan_file_precreate = null, string $contentType = self::contentTypes['xpanFilePrecreate'][0])
     {
 
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFilePrecreate'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFilePrecreate'
-            );
-        }
 
 
-
-        $resourcePath = '/rest/2.0/xpan/file/method/precreate';
+        $resourcePath = '/rest/2.0/xpan/file?method=precreate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
 
@@ -3967,6 +3634,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -3983,7 +3655,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -3994,8 +3666,6 @@ class DefaultApi
      *
      * 搜索文件
      *
-     * @param  string $method 本接口固定为search (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 搜索目录，默认根目录 (required)
      * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
      * @param  int $num 默认为500，不能修改 (required)
@@ -4009,9 +3679,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileSearch200Response
      */
-    public function xpanFileSearch($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearch($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
-        list($response) = $this->xpanFileSearchWithHttpInfo($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
+        list($response) = $this->xpanFileSearchWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
         return $response;
     }
 
@@ -4020,8 +3690,6 @@ class DefaultApi
      *
      * 搜索文件
      *
-     * @param  string $method 本接口固定为search (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 搜索目录，默认根目录 (required)
      * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
      * @param  int $num 默认为500，不能修改 (required)
@@ -4035,9 +3703,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileSearch200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileSearchWithHttpInfo($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
-        $request = $this->xpanFileSearchRequest($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
+        $request = $this->xpanFileSearchRequest($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4128,8 +3796,6 @@ class DefaultApi
      *
      * 搜索文件
      *
-     * @param  string $method 本接口固定为search (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 搜索目录，默认根目录 (required)
      * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
      * @param  int $num 默认为500，不能修改 (required)
@@ -4142,9 +3808,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileSearchAsync($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchAsync($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
-        return $this->xpanFileSearchAsyncWithHttpInfo($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key, $contentType)
+        return $this->xpanFileSearchAsyncWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4157,8 +3823,6 @@ class DefaultApi
      *
      * 搜索文件
      *
-     * @param  string $method 本接口固定为search (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 搜索目录，默认根目录 (required)
      * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
      * @param  int $num 默认为500，不能修改 (required)
@@ -4171,10 +3835,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileSearchAsyncWithHttpInfo($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchAsyncWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileSearch200Response';
-        $request = $this->xpanFileSearchRequest($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
+        $request = $this->xpanFileSearchRequest($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4215,8 +3879,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileSearch'
      *
-     * @param  string $method 本接口固定为search (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $dir 搜索目录，默认根目录 (required)
      * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
      * @param  int $num 默认为500，不能修改 (required)
@@ -4229,22 +3891,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileSearchRequest($method, $access_token, $dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchRequest($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileSearch'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileSearch'
-            );
-        }
 
         // verify the required parameter 'dir' is set
         if ($dir === null || (is_array($dir) && count($dir) === 0)) {
@@ -4290,31 +3938,13 @@ class DefaultApi
 
 
 
-        $resourcePath = '/rest/2.0/xpan/file/method/search';
+        $resourcePath = '/rest/2.0/xpan/file?method=search';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $key,
@@ -4413,6 +4043,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -4429,7 +4064,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -4440,8 +4075,6 @@ class DefaultApi
      *
      * 获取视频列表
      *
-     * @param  string $method 本接口固定为videolist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -4455,9 +4088,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileVideolist($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolist($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
-        list($response) = $this->xpanFileVideolistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        list($response) = $this->xpanFileVideolistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
         return $response;
     }
 
@@ -4466,8 +4099,6 @@ class DefaultApi
      *
      * 获取视频列表
      *
-     * @param  string $method 本接口固定为videolist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -4481,9 +4112,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileVideolistWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
-        $request = $this->xpanFileVideolistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileVideolistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4574,8 +4205,6 @@ class DefaultApi
      *
      * 获取视频列表
      *
-     * @param  string $method 本接口固定为videolist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -4588,9 +4217,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileVideolistAsync($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistAsync($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
-        return $this->xpanFileVideolistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
+        return $this->xpanFileVideolistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4603,8 +4232,6 @@ class DefaultApi
      *
      * 获取视频列表
      *
-     * @param  string $method 本接口固定为videolist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -4617,10 +4244,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileVideolistAsyncWithHttpInfo($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
-        $request = $this->xpanFileVideolistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileVideolistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4661,8 +4288,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanFileVideolist'
      *
-     * @param  string $method 本接口固定为videolist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
      * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
      * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
@@ -4675,22 +4300,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileVideolistRequest($method, $access_token, $parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanFileVideolist'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanFileVideolist'
-            );
-        }
 
         // verify the required parameter 'parent_path' is set
         if ($parent_path === null || (is_array($parent_path) && count($parent_path) === 0)) {
@@ -4742,31 +4353,13 @@ class DefaultApi
         }
 
 
-        $resourcePath = '/rest/2.0/xpan/file/method/videolist';
+        $resourcePath = '/rest/2.0/xpan/file?method=videolist';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $parent_path,
@@ -4865,6 +4458,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -4881,7 +4479,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -4892,8 +4490,6 @@ class DefaultApi
      *
      * 获取分类文件列表
      *
-     * @param  string $method 本接口固定为categorylist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
      * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
@@ -4909,9 +4505,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanMultimediaCategorylist200Response
      */
-    public function xpanMultimediaCategorylist($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylist($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
-        list($response) = $this->xpanMultimediaCategorylistWithHttpInfo($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
+        list($response) = $this->xpanMultimediaCategorylistWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
         return $response;
     }
 
@@ -4920,8 +4516,6 @@ class DefaultApi
      *
      * 获取分类文件列表
      *
-     * @param  string $method 本接口固定为categorylist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
      * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
@@ -4937,9 +4531,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanMultimediaCategorylist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanMultimediaCategorylistWithHttpInfo($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
-        $request = $this->xpanMultimediaCategorylistRequest($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
+        $request = $this->xpanMultimediaCategorylistRequest($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5030,8 +4624,6 @@ class DefaultApi
      *
      * 获取分类文件列表
      *
-     * @param  string $method 本接口固定为categorylist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
      * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
@@ -5046,9 +4638,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaCategorylistAsync($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistAsync($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
-        return $this->xpanMultimediaCategorylistAsyncWithHttpInfo($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType)
+        return $this->xpanMultimediaCategorylistAsyncWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5061,8 +4653,6 @@ class DefaultApi
      *
      * 获取分类文件列表
      *
-     * @param  string $method 本接口固定为categorylist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
      * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
@@ -5077,10 +4667,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaCategorylistAsyncWithHttpInfo($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistAsyncWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanMultimediaCategorylist200Response';
-        $request = $this->xpanMultimediaCategorylistRequest($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
+        $request = $this->xpanMultimediaCategorylistRequest($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5121,8 +4711,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanMultimediaCategorylist'
      *
-     * @param  string $method 本接口固定为categorylist (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
      * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
@@ -5137,22 +4725,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanMultimediaCategorylistRequest($method, $access_token, $show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistRequest($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanMultimediaCategorylist'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanMultimediaCategorylist'
-            );
-        }
 
         // verify the required parameter 'show_dir' is set
         if ($show_dir === null || (is_array($show_dir) && count($show_dir) === 0)) {
@@ -5212,31 +4786,13 @@ class DefaultApi
 
 
 
-        $resourcePath = '/rest/2.0/xpan/multimedia/method/categorylist';
+        $resourcePath = '/rest/2.0/xpan/multimedia?method=categorylist';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $category,
@@ -5353,6 +4909,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -5369,7 +4930,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -5380,8 +4941,6 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  string $method 本接口固定为filemetas (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
      * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
@@ -5394,9 +4953,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanMultimediaFilemetas200Response
      */
-    public function xpanMultimediaFilemetas($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetas($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-        list($response) = $this->xpanMultimediaFilemetasWithHttpInfo($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
+        list($response) = $this->xpanMultimediaFilemetasWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
         return $response;
     }
 
@@ -5405,8 +4964,6 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  string $method 本接口固定为filemetas (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
      * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
@@ -5419,9 +4976,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanMultimediaFilemetas200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanMultimediaFilemetasWithHttpInfo($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-        $request = $this->xpanMultimediaFilemetasRequest($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
+        $request = $this->xpanMultimediaFilemetasRequest($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5512,8 +5069,6 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  string $method 本接口固定为filemetas (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
      * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
@@ -5525,9 +5080,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaFilemetasAsync($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasAsync($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-        return $this->xpanMultimediaFilemetasAsyncWithHttpInfo($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType)
+        return $this->xpanMultimediaFilemetasAsyncWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5540,8 +5095,6 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  string $method 本接口固定为filemetas (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
      * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
@@ -5553,10 +5106,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaFilemetasAsyncWithHttpInfo($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasAsyncWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanMultimediaFilemetas200Response';
-        $request = $this->xpanMultimediaFilemetasRequest($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
+        $request = $this->xpanMultimediaFilemetasRequest($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5597,8 +5150,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanMultimediaFilemetas'
      *
-     * @param  string $method 本接口固定为filemetas (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
      * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
@@ -5610,22 +5161,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanMultimediaFilemetasRequest($method, $access_token, $dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasRequest($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanMultimediaFilemetas'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanMultimediaFilemetas'
-            );
-        }
 
         // verify the required parameter 'dlink' is set
         if ($dlink === null || (is_array($dlink) && count($dlink) === 0)) {
@@ -5664,31 +5201,13 @@ class DefaultApi
 
 
 
-        $resourcePath = '/rest/2.0/xpan/multimedia/method/filemetas';
+        $resourcePath = '/rest/2.0/xpan/multimedia?method=filemetas';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $fsids,
@@ -5778,6 +5297,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -5794,7 +5318,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -5805,8 +5329,6 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  string $method 本接口固定为listall (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
      * @param  string $desc 0为升序，1为降序，默认为0 (required)
@@ -5822,9 +5344,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanMultimediaListall200Response
      */
-    public function xpanMultimediaListall($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListall($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-        list($response) = $this->xpanMultimediaListallWithHttpInfo($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
+        list($response) = $this->xpanMultimediaListallWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
         return $response;
     }
 
@@ -5833,8 +5355,6 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  string $method 本接口固定为listall (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
      * @param  string $desc 0为升序，1为降序，默认为0 (required)
@@ -5850,9 +5370,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanMultimediaListall200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanMultimediaListallWithHttpInfo($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-        $request = $this->xpanMultimediaListallRequest($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
+        $request = $this->xpanMultimediaListallRequest($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5943,8 +5463,6 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  string $method 本接口固定为listall (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
      * @param  string $desc 0为升序，1为降序，默认为0 (required)
@@ -5959,9 +5477,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaListallAsync($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallAsync($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-        return $this->xpanMultimediaListallAsyncWithHttpInfo($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType)
+        return $this->xpanMultimediaListallAsyncWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5974,8 +5492,6 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  string $method 本接口固定为listall (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
      * @param  string $desc 0为升序，1为降序，默认为0 (required)
@@ -5990,10 +5506,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaListallAsyncWithHttpInfo($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallAsyncWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanMultimediaListall200Response';
-        $request = $this->xpanMultimediaListallRequest($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
+        $request = $this->xpanMultimediaListallRequest($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6034,8 +5550,6 @@ class DefaultApi
     /**
      * Create request for operation 'xpanMultimediaListall'
      *
-     * @param  string $method 本接口固定为listall (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
      * @param  string $desc 0为升序，1为降序，默认为0 (required)
@@ -6050,22 +5564,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanMultimediaListallRequest($method, $access_token, $recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallRequest($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanMultimediaListall'
-            );
-        }
-
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanMultimediaListall'
-            );
-        }
 
         // verify the required parameter 'recursion' is set
         if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
@@ -6125,31 +5625,13 @@ class DefaultApi
 
 
 
-        $resourcePath = '/rest/2.0/xpan/multimedia/method/listall';
+        $resourcePath = '/rest/2.0/xpan/multimedia?method=listall';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $path,
@@ -6266,6 +5748,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -6282,7 +5769,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );
@@ -6293,17 +5780,15 @@ class DefaultApi
      *
      * 获取用户信息
      *
-     * @param  string $method 本接口固定为uinfo (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanNasUinfo'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanNasUinfo200Response
      */
-    public function xpanNasUinfo($method, $access_token, string $contentType = self::contentTypes['xpanNasUinfo'][0])
+    public function xpanNasUinfo(string $contentType = self::contentTypes['xpanNasUinfo'][0])
     {
-        list($response) = $this->xpanNasUinfoWithHttpInfo($method, $access_token, $contentType);
+        list($response) = $this->xpanNasUinfoWithHttpInfo($contentType);
         return $response;
     }
 
@@ -6312,17 +5797,15 @@ class DefaultApi
      *
      * 获取用户信息
      *
-     * @param  string $method 本接口固定为uinfo (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanNasUinfo'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanNasUinfo200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanNasUinfoWithHttpInfo($method, $access_token, string $contentType = self::contentTypes['xpanNasUinfo'][0])
+    public function xpanNasUinfoWithHttpInfo(string $contentType = self::contentTypes['xpanNasUinfo'][0])
     {
-        $request = $this->xpanNasUinfoRequest($method, $access_token, $contentType);
+        $request = $this->xpanNasUinfoRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6413,16 +5896,14 @@ class DefaultApi
      *
      * 获取用户信息
      *
-     * @param  string $method 本接口固定为uinfo (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanNasUinfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanNasUinfoAsync($method, $access_token, string $contentType = self::contentTypes['xpanNasUinfo'][0])
+    public function xpanNasUinfoAsync(string $contentType = self::contentTypes['xpanNasUinfo'][0])
     {
-        return $this->xpanNasUinfoAsyncWithHttpInfo($method, $access_token, $contentType)
+        return $this->xpanNasUinfoAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6435,17 +5916,15 @@ class DefaultApi
      *
      * 获取用户信息
      *
-     * @param  string $method 本接口固定为uinfo (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanNasUinfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanNasUinfoAsyncWithHttpInfo($method, $access_token, string $contentType = self::contentTypes['xpanNasUinfo'][0])
+    public function xpanNasUinfoAsyncWithHttpInfo(string $contentType = self::contentTypes['xpanNasUinfo'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanNasUinfo200Response';
-        $request = $this->xpanNasUinfoRequest($method, $access_token, $contentType);
+        $request = $this->xpanNasUinfoRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6486,56 +5965,22 @@ class DefaultApi
     /**
      * Create request for operation 'xpanNasUinfo'
      *
-     * @param  string $method 本接口固定为uinfo (required)
-     * @param  string $access_token 接口鉴权参数 (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanNasUinfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanNasUinfoRequest($method, $access_token, string $contentType = self::contentTypes['xpanNasUinfo'][0])
+    public function xpanNasUinfoRequest(string $contentType = self::contentTypes['xpanNasUinfo'][0])
     {
 
-        // verify the required parameter 'method' is set
-        if ($method === null || (is_array($method) && count($method) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $method when calling xpanNasUinfo'
-            );
-        }
 
-        // verify the required parameter 'access_token' is set
-        if ($access_token === null || (is_array($access_token) && count($access_token) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $access_token when calling xpanNasUinfo'
-            );
-        }
-
-
-        $resourcePath = '/rest/2.0/xpan/nas/method/uinfo';
+        $resourcePath = '/rest/2.0/xpan/nas?method=uinfo';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $method,
-            'method', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $access_token,
-            'access_token', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
 
 
 
@@ -6571,6 +6016,11 @@ class DefaultApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('access_token');
+        if ($apiKey !== null) {
+            $queryParams['access_token'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -6587,7 +6037,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
             $headers,
             $httpBody
         );

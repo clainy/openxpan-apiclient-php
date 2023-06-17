@@ -93,7 +93,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'http://localhost';
+    protected $host = 'https://pan.baidu.com';
 
     /**
      * User agent of the HTTP request, set to "OpenAPI-Generator/{version}/PHP" by default
@@ -472,8 +472,14 @@ class Configuration
     {
         return [
             [
-                "url" => "",
+                "url" => "https://pan.baidu.com",
                 "description" => "No description provided",
+                "variables" => [
+                    "host" => [
+                        "description" => "No description provided",
+                        "default_value" => "pan.baidu.com",
+                    ]
+                ]
             ]
         ];
     }
