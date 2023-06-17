@@ -15,9 +15,9 @@
         "friendsofphp/php-cs-fixer": "^3.5"
     },
     "autoload": {
-        "psr-4": { "Clainy\\BaiduXpanApi\\" : "lib/" }
+        "psr-4": { "Clainy\\OpenxpanApiClient\\" : "lib/" }
     },
     "autoload-dev": {
-        "psr-4": { "Clainy\\BaiduXpanApi\\Test\\" : "test/" }
+        "psr-4": { "Clainy\\OpenxpanApiClient\\Test\\" : "test/" }
     }
 }
