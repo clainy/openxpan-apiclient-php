@@ -82,20 +82,20 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**apiCategoryinfo**](docs/Api/DefaultApi.md#apicategoryinfo) | **GET** /api/categoryinfo | 获取分类文件总个数
 *DefaultApi* | [**apiQuota**](docs/Api/DefaultApi.md#apiquota) | **GET** /api/quota | 获取网盘容量信息
-*DefaultApi* | [**pcsSuperfile2Upload**](docs/Api/DefaultApi.md#pcssuperfile2upload) | **POST** /rest/2.0/pcs/superfile2/method/upload | 分片上传
-*DefaultApi* | [**xpanFileBtlist**](docs/Api/DefaultApi.md#xpanfilebtlist) | **GET** /rest/2.0/xpan/file/method/btlist | 获取bt列表
-*DefaultApi* | [**xpanFileCreate**](docs/Api/DefaultApi.md#xpanfilecreate) | **POST** /rest/2.0/xpan/file/method/create | 创建文件, 创建文件夹
-*DefaultApi* | [**xpanFileDoclist**](docs/Api/DefaultApi.md#xpanfiledoclist) | **GET** /rest/2.0/xpan/file/method/doclist | 获取文档列表
-*DefaultApi* | [**xpanFileFilemanager**](docs/Api/DefaultApi.md#xpanfilefilemanager) | **POST** /rest/2.0/xpan/file/method/filemanager | 管理文件
-*DefaultApi* | [**xpanFileImagelist**](docs/Api/DefaultApi.md#xpanfileimagelist) | **GET** /rest/2.0/xpan/file/method/imagelist | 获取图片列表
-*DefaultApi* | [**xpanFileList**](docs/Api/DefaultApi.md#xpanfilelist) | **GET** /rest/2.0/xpan/file/method/list | 获取文件列表
-*DefaultApi* | [**xpanFilePrecreate**](docs/Api/DefaultApi.md#xpanfileprecreate) | **POST** /rest/2.0/xpan/file/method/precreate | 预上传
-*DefaultApi* | [**xpanFileSearch**](docs/Api/DefaultApi.md#xpanfilesearch) | **GET** /rest/2.0/xpan/file/method/search | 搜索文件
-*DefaultApi* | [**xpanFileVideolist**](docs/Api/DefaultApi.md#xpanfilevideolist) | **GET** /rest/2.0/xpan/file/method/videolist | 获取视频列表
-*DefaultApi* | [**xpanMultimediaCategorylist**](docs/Api/DefaultApi.md#xpanmultimediacategorylist) | **GET** /rest/2.0/xpan/multimedia/method/categorylist | 获取分类文件列表
-*DefaultApi* | [**xpanMultimediaFilemetas**](docs/Api/DefaultApi.md#xpanmultimediafilemetas) | **GET** /rest/2.0/xpan/multimedia/method/filemetas | 查询文件信息
-*DefaultApi* | [**xpanMultimediaListall**](docs/Api/DefaultApi.md#xpanmultimedialistall) | **GET** /rest/2.0/xpan/multimedia/method/listall | 递归获取文件列表
-*DefaultApi* | [**xpanNasUinfo**](docs/Api/DefaultApi.md#xpannasuinfo) | **GET** /rest/2.0/xpan/nas/method/uinfo | 获取用户信息
+*DefaultApi* | [**pcsSuperfile2Upload**](docs/Api/DefaultApi.md#pcssuperfile2upload) | **POST** /rest/2.0/pcs/superfile2?method=upload | 分片上传
+*DefaultApi* | [**xpanFileBtlist**](docs/Api/DefaultApi.md#xpanfilebtlist) | **GET** /rest/2.0/xpan/file?method=btlist | 获取bt列表
+*DefaultApi* | [**xpanFileCreate**](docs/Api/DefaultApi.md#xpanfilecreate) | **POST** /rest/2.0/xpan/file?method=create | 创建文件, 创建文件夹
+*DefaultApi* | [**xpanFileDoclist**](docs/Api/DefaultApi.md#xpanfiledoclist) | **GET** /rest/2.0/xpan/file?method=doclist | 获取文档列表
+*DefaultApi* | [**xpanFileFilemanager**](docs/Api/DefaultApi.md#xpanfilefilemanager) | **POST** /rest/2.0/xpan/file?method=filemanager | 管理文件
+*DefaultApi* | [**xpanFileImagelist**](docs/Api/DefaultApi.md#xpanfileimagelist) | **GET** /rest/2.0/xpan/file?method=imagelist | 获取图片列表
+*DefaultApi* | [**xpanFileList**](docs/Api/DefaultApi.md#xpanfilelist) | **GET** /rest/2.0/xpan/file?method=list | 获取文件列表
+*DefaultApi* | [**xpanFilePrecreate**](docs/Api/DefaultApi.md#xpanfileprecreate) | **POST** /rest/2.0/xpan/file?method=precreate | 预上传
+*DefaultApi* | [**xpanFileSearch**](docs/Api/DefaultApi.md#xpanfilesearch) | **GET** /rest/2.0/xpan/file?method=search | 搜索文件
+*DefaultApi* | [**xpanFileVideolist**](docs/Api/DefaultApi.md#xpanfilevideolist) | **GET** /rest/2.0/xpan/file?method=videolist | 获取视频列表
+*DefaultApi* | [**xpanMultimediaCategorylist**](docs/Api/DefaultApi.md#xpanmultimediacategorylist) | **GET** /rest/2.0/xpan/multimedia?method=categorylist | 获取分类文件列表
+*DefaultApi* | [**xpanMultimediaFilemetas**](docs/Api/DefaultApi.md#xpanmultimediafilemetas) | **GET** /rest/2.0/xpan/multimedia?method=filemetas | 查询文件信息
+*DefaultApi* | [**xpanMultimediaListall**](docs/Api/DefaultApi.md#xpanmultimedialistall) | **GET** /rest/2.0/xpan/multimedia?method=listall | 递归获取文件列表
+*DefaultApi* | [**xpanNasUinfo**](docs/Api/DefaultApi.md#xpannasuinfo) | **GET** /rest/2.0/xpan/nas?method=uinfo | 获取用户信息
 
 ## Models
 

@@ -486,7 +486,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -796,7 +796,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -1137,7 +1137,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -1531,7 +1531,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -1812,7 +1812,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -2227,7 +2227,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -2523,7 +2523,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -2938,7 +2938,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -3374,7 +3374,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -3655,7 +3655,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -4064,7 +4064,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -4479,7 +4479,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -4930,7 +4930,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -5318,7 +5318,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -5769,7 +5769,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );
@@ -6037,7 +6037,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . (strpos($resourcePath, '?') === false && $query ? '?' :'') . $query,
+            $operationHost . $resourcePath . ((str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
             $headers,
             $httpBody
         );

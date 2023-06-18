@@ -6,20 +6,20 @@ All URIs are relative to https://pan.baidu.com, except if the operation defines 
 | ------------- | ------------- | ------------- |
 | [**apiCategoryinfo()**](DefaultApi.md#apiCategoryinfo) | **GET** /api/categoryinfo | 获取分类文件总个数 |
 | [**apiQuota()**](DefaultApi.md#apiQuota) | **GET** /api/quota | 获取网盘容量信息 |
-| [**pcsSuperfile2Upload()**](DefaultApi.md#pcsSuperfile2Upload) | **POST** /rest/2.0/pcs/superfile2/method/upload | 分片上传 |
-| [**xpanFileBtlist()**](DefaultApi.md#xpanFileBtlist) | **GET** /rest/2.0/xpan/file/method/btlist | 获取bt列表 |
-| [**xpanFileCreate()**](DefaultApi.md#xpanFileCreate) | **POST** /rest/2.0/xpan/file/method/create | 创建文件, 创建文件夹 |
-| [**xpanFileDoclist()**](DefaultApi.md#xpanFileDoclist) | **GET** /rest/2.0/xpan/file/method/doclist | 获取文档列表 |
-| [**xpanFileFilemanager()**](DefaultApi.md#xpanFileFilemanager) | **POST** /rest/2.0/xpan/file/method/filemanager | 管理文件 |
-| [**xpanFileImagelist()**](DefaultApi.md#xpanFileImagelist) | **GET** /rest/2.0/xpan/file/method/imagelist | 获取图片列表 |
-| [**xpanFileList()**](DefaultApi.md#xpanFileList) | **GET** /rest/2.0/xpan/file/method/list | 获取文件列表 |
-| [**xpanFilePrecreate()**](DefaultApi.md#xpanFilePrecreate) | **POST** /rest/2.0/xpan/file/method/precreate | 预上传 |
-| [**xpanFileSearch()**](DefaultApi.md#xpanFileSearch) | **GET** /rest/2.0/xpan/file/method/search | 搜索文件 |
-| [**xpanFileVideolist()**](DefaultApi.md#xpanFileVideolist) | **GET** /rest/2.0/xpan/file/method/videolist | 获取视频列表 |
-| [**xpanMultimediaCategorylist()**](DefaultApi.md#xpanMultimediaCategorylist) | **GET** /rest/2.0/xpan/multimedia/method/categorylist | 获取分类文件列表 |
-| [**xpanMultimediaFilemetas()**](DefaultApi.md#xpanMultimediaFilemetas) | **GET** /rest/2.0/xpan/multimedia/method/filemetas | 查询文件信息 |
-| [**xpanMultimediaListall()**](DefaultApi.md#xpanMultimediaListall) | **GET** /rest/2.0/xpan/multimedia/method/listall | 递归获取文件列表 |
-| [**xpanNasUinfo()**](DefaultApi.md#xpanNasUinfo) | **GET** /rest/2.0/xpan/nas/method/uinfo | 获取用户信息 |
+| [**pcsSuperfile2Upload()**](DefaultApi.md#pcsSuperfile2Upload) | **POST** /rest/2.0/pcs/superfile2?method=upload | 分片上传 |
+| [**xpanFileBtlist()**](DefaultApi.md#xpanFileBtlist) | **GET** /rest/2.0/xpan/file?method=btlist | 获取bt列表 |
+| [**xpanFileCreate()**](DefaultApi.md#xpanFileCreate) | **POST** /rest/2.0/xpan/file?method=create | 创建文件, 创建文件夹 |
+| [**xpanFileDoclist()**](DefaultApi.md#xpanFileDoclist) | **GET** /rest/2.0/xpan/file?method=doclist | 获取文档列表 |
+| [**xpanFileFilemanager()**](DefaultApi.md#xpanFileFilemanager) | **POST** /rest/2.0/xpan/file?method=filemanager | 管理文件 |
+| [**xpanFileImagelist()**](DefaultApi.md#xpanFileImagelist) | **GET** /rest/2.0/xpan/file?method=imagelist | 获取图片列表 |
+| [**xpanFileList()**](DefaultApi.md#xpanFileList) | **GET** /rest/2.0/xpan/file?method=list | 获取文件列表 |
+| [**xpanFilePrecreate()**](DefaultApi.md#xpanFilePrecreate) | **POST** /rest/2.0/xpan/file?method=precreate | 预上传 |
+| [**xpanFileSearch()**](DefaultApi.md#xpanFileSearch) | **GET** /rest/2.0/xpan/file?method=search | 搜索文件 |
+| [**xpanFileVideolist()**](DefaultApi.md#xpanFileVideolist) | **GET** /rest/2.0/xpan/file?method=videolist | 获取视频列表 |
+| [**xpanMultimediaCategorylist()**](DefaultApi.md#xpanMultimediaCategorylist) | **GET** /rest/2.0/xpan/multimedia?method=categorylist | 获取分类文件列表 |
+| [**xpanMultimediaFilemetas()**](DefaultApi.md#xpanMultimediaFilemetas) | **GET** /rest/2.0/xpan/multimedia?method=filemetas | 查询文件信息 |
+| [**xpanMultimediaListall()**](DefaultApi.md#xpanMultimediaListall) | **GET** /rest/2.0/xpan/multimedia?method=listall | 递归获取文件列表 |
+| [**xpanNasUinfo()**](DefaultApi.md#xpanNasUinfo) | **GET** /rest/2.0/xpan/nas?method=uinfo | 获取用户信息 |
 
 
 ## `apiCategoryinfo()`
