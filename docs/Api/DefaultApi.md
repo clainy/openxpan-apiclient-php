@@ -46,7 +46,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $parent_path = 'parent_path_example'; // string | 目录名称，为空时，parent_path = \"/\" && recursion = 1
@@ -110,7 +110,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $checkfree = 56; // int | 是否检查免费信息，0为不查，1为查，默认为0
@@ -172,7 +172,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $type = 'type_example'; // string | 固定值 tmpfile
@@ -240,7 +240,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $parent_path = 'parent_path_example'; // string | 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码
@@ -310,7 +310,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $post_xpan_file_create = new \Clainy\OpenxpanApiClient\Model\PostXpanFileCreate(); // \Clainy\OpenxpanApiClient\Model\PostXpanFileCreate
@@ -370,7 +370,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $parent_path = 'parent_path_example'; // string | 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。
@@ -442,7 +442,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $opera = 'opera_example'; // string | 文件操作参数，可实现文件复制、移动、重命名、删除，依次对应的参数值为：copy、move、rename、delete
@@ -504,7 +504,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $parent_path = 'parent_path_example'; // string | 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码
@@ -576,7 +576,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $dir = 'dir_example'; // string | 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码
@@ -650,7 +650,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $post_xpan_file_precreate = new \Clainy\OpenxpanApiClient\Model\PostXpanFilePrecreate(); // \Clainy\OpenxpanApiClient\Model\PostXpanFilePrecreate
@@ -710,7 +710,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $dir = 'dir_example'; // string | 搜索目录，默认根目录
@@ -782,7 +782,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $parent_path = 'parent_path_example'; // string | 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码
@@ -854,7 +854,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $show_dir = 56; // int | 是否展示文件夹，0:否(默认) 1:是
@@ -930,7 +930,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $dlink = 56; // int | 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作
@@ -1000,7 +1000,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $recursion = 56; // int | 是否递归，0为否，1为是，默认为0
@@ -1076,7 +1076,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 

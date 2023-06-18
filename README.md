@@ -58,7 +58,7 @@ $config = Clainy\OpenxpanApiClient\Configuration::getDefaultConfiguration()->set
 $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new GuzzleHttpClient(["defaults" => ["verify" => false]]),
     $config
 );
 $parent_path = 'parent_path_example'; // string | 目录名称，为空时，parent_path = \"/\" && recursion = 1
