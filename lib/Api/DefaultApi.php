@@ -173,17 +173,17 @@ class DefaultApi
      * 获取分类文件总个数
      *
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
-     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
-     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
+     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional, default to 1)
+     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCategoryinfo'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\ApiCategoryinfo200Response
      */
-    public function apiCategoryinfo($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfo($parent_path, $category = 1, $recursion = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
-        list($response) = $this->apiCategoryinfoWithHttpInfo($parent_path, $recursion, $category, $contentType);
+        list($response) = $this->apiCategoryinfoWithHttpInfo($parent_path, $category, $recursion, $contentType);
         return $response;
     }
 
@@ -193,17 +193,17 @@ class DefaultApi
      * 获取分类文件总个数
      *
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
-     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
-     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
+     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional, default to 1)
+     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCategoryinfo'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\ApiCategoryinfo200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiCategoryinfoWithHttpInfo($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoWithHttpInfo($parent_path, $category = 1, $recursion = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
-        $request = $this->apiCategoryinfoRequest($parent_path, $recursion, $category, $contentType);
+        $request = $this->apiCategoryinfoRequest($parent_path, $category, $recursion, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -295,16 +295,16 @@ class DefaultApi
      * 获取分类文件总个数
      *
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
-     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
-     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
+     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional, default to 1)
+     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCategoryinfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiCategoryinfoAsync($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoAsync($parent_path, $category = 1, $recursion = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
-        return $this->apiCategoryinfoAsyncWithHttpInfo($parent_path, $recursion, $category, $contentType)
+        return $this->apiCategoryinfoAsyncWithHttpInfo($parent_path, $category, $recursion, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -318,17 +318,17 @@ class DefaultApi
      * 获取分类文件总个数
      *
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
-     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
-     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
+     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional, default to 1)
+     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCategoryinfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiCategoryinfoAsyncWithHttpInfo($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoAsyncWithHttpInfo($parent_path, $category = 1, $recursion = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\ApiCategoryinfo200Response';
-        $request = $this->apiCategoryinfoRequest($parent_path, $recursion, $category, $contentType);
+        $request = $this->apiCategoryinfoRequest($parent_path, $category, $recursion, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -370,14 +370,14 @@ class DefaultApi
      * Create request for operation 'apiCategoryinfo'
      *
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 (required)
-     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (required)
-     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional)
+     * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子 (optional, default to 1)
+     * @param  int $recursion 是否递归，0 不递归、1 递归，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCategoryinfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiCategoryinfoRequest($parent_path, $recursion, $category = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
+    public function apiCategoryinfoRequest($parent_path, $category = 1, $recursion = null, string $contentType = self::contentTypes['apiCategoryinfo'][0])
     {
 
         // verify the required parameter 'parent_path' is set
@@ -387,12 +387,6 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling apiCategoryinfo'
-            );
-        }
 
 
 
@@ -428,7 +422,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
 
 
@@ -486,7 +480,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -497,15 +491,15 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
-     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
+     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (optional)
+     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\ApiQuota200Response
      */
-    public function apiQuota($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuota($checkfree = null, $checkexpire = null, string $contentType = self::contentTypes['apiQuota'][0])
     {
         list($response) = $this->apiQuotaWithHttpInfo($checkfree, $checkexpire, $contentType);
         return $response;
@@ -516,15 +510,15 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
-     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
+     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (optional)
+     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\ApiQuota200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiQuotaWithHttpInfo($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaWithHttpInfo($checkfree = null, $checkexpire = null, string $contentType = self::contentTypes['apiQuota'][0])
     {
         $request = $this->apiQuotaRequest($checkfree, $checkexpire, $contentType);
 
@@ -617,14 +611,14 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
-     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
+     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (optional)
+     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiQuotaAsync($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaAsync($checkfree = null, $checkexpire = null, string $contentType = self::contentTypes['apiQuota'][0])
     {
         return $this->apiQuotaAsyncWithHttpInfo($checkfree, $checkexpire, $contentType)
             ->then(
@@ -639,14 +633,14 @@ class DefaultApi
      *
      * 获取网盘容量信息
      *
-     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
-     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
+     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (optional)
+     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiQuotaAsyncWithHttpInfo($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaAsyncWithHttpInfo($checkfree = null, $checkexpire = null, string $contentType = self::contentTypes['apiQuota'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\ApiQuota200Response';
         $request = $this->apiQuotaRequest($checkfree, $checkexpire, $contentType);
@@ -690,29 +684,17 @@ class DefaultApi
     /**
      * Create request for operation 'apiQuota'
      *
-     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (required)
-     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (required)
+     * @param  int $checkfree 是否检查免费信息，0为不查，1为查，默认为0 (optional)
+     * @param  int $checkexpire 是否检查过期信息，0为不查，1为查，默认为0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiQuota'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiQuotaRequest($checkfree, $checkexpire, string $contentType = self::contentTypes['apiQuota'][0])
+    public function apiQuotaRequest($checkfree = null, $checkexpire = null, string $contentType = self::contentTypes['apiQuota'][0])
     {
 
-        // verify the required parameter 'checkfree' is set
-        if ($checkfree === null || (is_array($checkfree) && count($checkfree) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $checkfree when calling apiQuota'
-            );
-        }
 
-        // verify the required parameter 'checkexpire' is set
-        if ($checkexpire === null || (is_array($checkexpire) && count($checkexpire) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $checkexpire when calling apiQuota'
-            );
-        }
 
 
         $resourcePath = '/api/quota';
@@ -729,7 +711,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -738,7 +720,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
 
 
@@ -796,7 +778,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -1137,7 +1119,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -1149,18 +1131,18 @@ class DefaultApi
      * 获取bt列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileBtlist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileBtlist($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlist($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
         list($response) = $this->xpanFileBtlistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $contentType);
         return $response;
@@ -1172,18 +1154,18 @@ class DefaultApi
      * 获取bt列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileBtlist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileBtlistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistWithHttpInfo($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
         $request = $this->xpanFileBtlistRequest($parent_path, $page, $num, $order, $desc, $recursion, $contentType);
 
@@ -1277,17 +1259,17 @@ class DefaultApi
      * 获取bt列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileBtlist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileBtlistAsync($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistAsync($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
         return $this->xpanFileBtlistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $contentType)
             ->then(
@@ -1303,17 +1285,17 @@ class DefaultApi
      * 获取bt列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileBtlist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileBtlistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistAsyncWithHttpInfo($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
         $request = $this->xpanFileBtlistRequest($parent_path, $page, $num, $order, $desc, $recursion, $contentType);
@@ -1358,17 +1340,17 @@ class DefaultApi
      * Create request for operation 'xpanFileBtlist'
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 每页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的bt文件 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileBtlist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileBtlistRequest($parent_path, $page, $num, $order, $desc, $recursion, string $contentType = self::contentTypes['xpanFileBtlist'][0])
+    public function xpanFileBtlistRequest($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileBtlist'][0])
     {
 
         // verify the required parameter 'parent_path' is set
@@ -1378,40 +1360,10 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'page' is set
-        if ($page === null || (is_array($page) && count($page) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $page when calling xpanFileBtlist'
-            );
-        }
 
-        // verify the required parameter 'num' is set
-        if ($num === null || (is_array($num) && count($num) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $num when calling xpanFileBtlist'
-            );
-        }
 
-        // verify the required parameter 'order' is set
-        if ($order === null || (is_array($order) && count($order) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order when calling xpanFileBtlist'
-            );
-        }
 
-        // verify the required parameter 'desc' is set
-        if ($desc === null || (is_array($desc) && count($desc) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $desc when calling xpanFileBtlist'
-            );
-        }
 
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling xpanFileBtlist'
-            );
-        }
 
 
         $resourcePath = '/rest/2.0/xpan/file?method=btlist';
@@ -1437,7 +1389,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -1446,7 +1398,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -1455,7 +1407,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -1464,7 +1416,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -1473,7 +1425,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
 
 
@@ -1531,7 +1483,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -1812,7 +1764,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -1824,21 +1776,21 @@ class DefaultApi
      * 获取文档列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (required)
      * @param  int $web 为1时返回文档预览地址lodocpreview (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileDoclist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileDoclist($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclist($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
-        list($response) = $this->xpanFileDoclistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        list($response) = $this->xpanFileDoclistWithHttpInfo($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType);
         return $response;
     }
 
@@ -1848,21 +1800,21 @@ class DefaultApi
      * 获取文档列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (required)
      * @param  int $web 为1时返回文档预览地址lodocpreview (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileDoclist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileDoclistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistWithHttpInfo($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
-        $request = $this->xpanFileDoclistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileDoclistRequest($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1954,20 +1906,20 @@ class DefaultApi
      * 获取文档列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (required)
      * @param  int $web 为1时返回文档预览地址lodocpreview (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileDoclist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileDoclistAsync($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistAsync($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
-        return $this->xpanFileDoclistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
+        return $this->xpanFileDoclistAsyncWithHttpInfo($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1981,21 +1933,21 @@ class DefaultApi
      * 获取文档列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (required)
      * @param  int $web 为1时返回文档预览地址lodocpreview (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileDoclist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileDoclistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistAsyncWithHttpInfo($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
-        $request = $this->xpanFileDoclistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileDoclistRequest($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2037,18 +1989,18 @@ class DefaultApi
      * Create request for operation 'xpanFileDoclist'
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码。 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (required)
      * @param  int $web 为1时返回文档预览地址lodocpreview (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文档数， 默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的文档 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileDoclist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileDoclistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileDoclist'][0])
+    public function xpanFileDoclistRequest($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileDoclist'][0])
     {
 
         // verify the required parameter 'parent_path' is set
@@ -2058,47 +2010,17 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'page' is set
-        if ($page === null || (is_array($page) && count($page) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $page when calling xpanFileDoclist'
-            );
-        }
-
-        // verify the required parameter 'num' is set
-        if ($num === null || (is_array($num) && count($num) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $num when calling xpanFileDoclist'
-            );
-        }
-
-        // verify the required parameter 'order' is set
-        if ($order === null || (is_array($order) && count($order) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order when calling xpanFileDoclist'
-            );
-        }
-
-        // verify the required parameter 'desc' is set
-        if ($desc === null || (is_array($desc) && count($desc) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $desc when calling xpanFileDoclist'
-            );
-        }
-
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling xpanFileDoclist'
-            );
-        }
-
         // verify the required parameter 'web' is set
         if ($web === null || (is_array($web) && count($web) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $web when calling xpanFileDoclist'
             );
         }
+
+
+
+
+
 
 
         $resourcePath = '/rest/2.0/xpan/file?method=doclist';
@@ -2124,7 +2046,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2133,7 +2055,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2142,7 +2064,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2151,7 +2073,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2160,7 +2082,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2227,7 +2149,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -2523,7 +2445,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -2535,21 +2457,21 @@ class DefaultApi
      * 获取图片列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (required)
      * @param  int $web 为1时返回图片缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileImagelist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileImagelist($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelist($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
-        list($response) = $this->xpanFileImagelistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        list($response) = $this->xpanFileImagelistWithHttpInfo($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType);
         return $response;
     }
 
@@ -2559,21 +2481,21 @@ class DefaultApi
      * 获取图片列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (required)
      * @param  int $web 为1时返回图片缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileImagelist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileImagelistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistWithHttpInfo($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
-        $request = $this->xpanFileImagelistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileImagelistRequest($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2665,20 +2587,20 @@ class DefaultApi
      * 获取图片列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (required)
      * @param  int $web 为1时返回图片缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileImagelist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileImagelistAsync($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistAsync($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
-        return $this->xpanFileImagelistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
+        return $this->xpanFileImagelistAsyncWithHttpInfo($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2692,21 +2614,21 @@ class DefaultApi
      * 获取图片列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (required)
      * @param  int $web 为1时返回图片缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileImagelist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileImagelistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistAsyncWithHttpInfo($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
-        $request = $this->xpanFileImagelistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
+        $request = $this->xpanFileImagelistRequest($parent_path, $web, $page, $num, $order, $desc, $recursion, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2748,18 +2670,18 @@ class DefaultApi
      * Create request for operation 'xpanFileImagelist'
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (required)
      * @param  int $web 为1时返回图片缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果 如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的图片数，默认值为1000，建议最大值不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的图片 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileImagelist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileImagelistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileImagelist'][0])
+    public function xpanFileImagelistRequest($parent_path, $web, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, string $contentType = self::contentTypes['xpanFileImagelist'][0])
     {
 
         // verify the required parameter 'parent_path' is set
@@ -2769,47 +2691,17 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'page' is set
-        if ($page === null || (is_array($page) && count($page) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $page when calling xpanFileImagelist'
-            );
-        }
-
-        // verify the required parameter 'num' is set
-        if ($num === null || (is_array($num) && count($num) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $num when calling xpanFileImagelist'
-            );
-        }
-
-        // verify the required parameter 'order' is set
-        if ($order === null || (is_array($order) && count($order) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order when calling xpanFileImagelist'
-            );
-        }
-
-        // verify the required parameter 'desc' is set
-        if ($desc === null || (is_array($desc) && count($desc) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $desc when calling xpanFileImagelist'
-            );
-        }
-
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling xpanFileImagelist'
-            );
-        }
-
         // verify the required parameter 'web' is set
         if ($web === null || (is_array($web) && count($web) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $web when calling xpanFileImagelist'
             );
         }
+
+
+
+
+
 
 
         $resourcePath = '/rest/2.0/xpan/file?method=imagelist';
@@ -2835,7 +2727,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2844,7 +2736,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2853,7 +2745,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2862,7 +2754,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2871,7 +2763,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2938,7 +2830,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -2950,22 +2842,22 @@ class DefaultApi
      * 获取文件列表
      *
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
-     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
      * @param  int $start 起始位置，从0开始 (required)
-     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (required)
-     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (required)
      * @param  int $folder 是否只返回文件夹，0 返回所有，1 只返回文件夹，且属性只返回path字段 (required)
      * @param  int $showempty 是否返回dir_empty属性，0 不返回，1 返回 (required)
+     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (optional, default to 'name')
+     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (optional, default to 1)
+     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (optional)
+     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileList'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileList200Response
      */
-    public function xpanFileList($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileList($dir, $start, $folder, $showempty, $order = 'name', $desc = 1, $limit = null, $web = 1, string $contentType = self::contentTypes['xpanFileList'][0])
     {
-        list($response) = $this->xpanFileListWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
+        list($response) = $this->xpanFileListWithHttpInfo($dir, $start, $folder, $showempty, $order, $desc, $limit, $web, $contentType);
         return $response;
     }
 
@@ -2975,22 +2867,22 @@ class DefaultApi
      * 获取文件列表
      *
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
-     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
      * @param  int $start 起始位置，从0开始 (required)
-     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (required)
-     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (required)
      * @param  int $folder 是否只返回文件夹，0 返回所有，1 只返回文件夹，且属性只返回path字段 (required)
      * @param  int $showempty 是否返回dir_empty属性，0 不返回，1 返回 (required)
+     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (optional, default to 'name')
+     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (optional, default to 1)
+     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (optional)
+     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileList'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileList200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileListWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListWithHttpInfo($dir, $start, $folder, $showempty, $order = 'name', $desc = 1, $limit = null, $web = 1, string $contentType = self::contentTypes['xpanFileList'][0])
     {
-        $request = $this->xpanFileListRequest($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
+        $request = $this->xpanFileListRequest($dir, $start, $folder, $showempty, $order, $desc, $limit, $web, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3082,21 +2974,21 @@ class DefaultApi
      * 获取文件列表
      *
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
-     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
      * @param  int $start 起始位置，从0开始 (required)
-     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (required)
-     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (required)
      * @param  int $folder 是否只返回文件夹，0 返回所有，1 只返回文件夹，且属性只返回path字段 (required)
      * @param  int $showempty 是否返回dir_empty属性，0 不返回，1 返回 (required)
+     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (optional, default to 'name')
+     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (optional, default to 1)
+     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (optional)
+     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileListAsync($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListAsync($dir, $start, $folder, $showempty, $order = 'name', $desc = 1, $limit = null, $web = 1, string $contentType = self::contentTypes['xpanFileList'][0])
     {
-        return $this->xpanFileListAsyncWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType)
+        return $this->xpanFileListAsyncWithHttpInfo($dir, $start, $folder, $showempty, $order, $desc, $limit, $web, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3110,22 +3002,22 @@ class DefaultApi
      * 获取文件列表
      *
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
-     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
      * @param  int $start 起始位置，从0开始 (required)
-     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (required)
-     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (required)
      * @param  int $folder 是否只返回文件夹，0 返回所有，1 只返回文件夹，且属性只返回path字段 (required)
      * @param  int $showempty 是否返回dir_empty属性，0 不返回，1 返回 (required)
+     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (optional, default to 'name')
+     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (optional, default to 1)
+     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (optional)
+     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileListAsyncWithHttpInfo($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListAsyncWithHttpInfo($dir, $start, $folder, $showempty, $order = 'name', $desc = 1, $limit = null, $web = 1, string $contentType = self::contentTypes['xpanFileList'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileList200Response';
-        $request = $this->xpanFileListRequest($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, $contentType);
+        $request = $this->xpanFileListRequest($dir, $start, $folder, $showempty, $order, $desc, $limit, $web, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3167,19 +3059,19 @@ class DefaultApi
      * Create request for operation 'xpanFileList'
      *
      * @param  string $dir 需要list的目录，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (required)
-     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (required)
      * @param  int $start 起始位置，从0开始 (required)
-     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (required)
-     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (required)
      * @param  int $folder 是否只返回文件夹，0 返回所有，1 只返回文件夹，且属性只返回path字段 (required)
      * @param  int $showempty 是否返回dir_empty属性，0 不返回，1 返回 (required)
+     * @param  string $order 排序字段：默认为name；time表示先按文件类型排序，后按修改时间排序；name表示先按文件类型排序，后按文件名称排序；size表示先按文件类型排序，后按文件大小排序。 (optional, default to 'name')
+     * @param  int $desc 默认为升序，设置为1实现降序 （注：排序的对象是当前目录下所有文件，不是当前分页下的文件） (optional, default to 1)
+     * @param  int $limit 查询数目，默认为1000，建议最大不超过1000 (optional)
+     * @param  int $web 值为1时，返回dir_empty属性和缩略图数据 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileListRequest($dir, $order, $desc, $start, $limit, $web, $folder, $showempty, string $contentType = self::contentTypes['xpanFileList'][0])
+    public function xpanFileListRequest($dir, $start, $folder, $showempty, $order = 'name', $desc = 1, $limit = null, $web = 1, string $contentType = self::contentTypes['xpanFileList'][0])
     {
 
         // verify the required parameter 'dir' is set
@@ -3189,38 +3081,10 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'order' is set
-        if ($order === null || (is_array($order) && count($order) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order when calling xpanFileList'
-            );
-        }
-
-        // verify the required parameter 'desc' is set
-        if ($desc === null || (is_array($desc) && count($desc) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $desc when calling xpanFileList'
-            );
-        }
-
         // verify the required parameter 'start' is set
         if ($start === null || (is_array($start) && count($start) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $start when calling xpanFileList'
-            );
-        }
-
-        // verify the required parameter 'limit' is set
-        if ($limit === null || (is_array($limit) && count($limit) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $limit when calling xpanFileList'
-            );
-        }
-
-        // verify the required parameter 'web' is set
-        if ($web === null || (is_array($web) && count($web) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $web when calling xpanFileList'
             );
         }
 
@@ -3237,6 +3101,10 @@ class DefaultApi
                 'Missing the required parameter $showempty when calling xpanFileList'
             );
         }
+
+
+
+
 
 
         $resourcePath = '/rest/2.0/xpan/file?method=list';
@@ -3262,7 +3130,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -3271,7 +3139,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -3289,7 +3157,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -3298,7 +3166,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -3374,7 +3242,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -3655,7 +3523,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -3667,21 +3535,21 @@ class DefaultApi
      * 搜索文件
      *
      * @param  string $dir 搜索目录，默认根目录 (required)
-     * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
-     * @param  int $num 默认为500，不能修改 (required)
-     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (required)
-     * @param  int $web 默认0，为1时返回缩略图信息 (required)
      * @param  string $device_id 设备ID，设备注册接口下发，硬件设备必传 (required)
      * @param  string $key 搜索关键字，最大30字符（UTF8格式） (optional)
+     * @param  int $page 页数，从1开始，缺省则返回所有条目 (optional, default to 1)
+     * @param  int $num 默认为500，不能修改 (optional)
+     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (optional, default to 1)
+     * @param  int $web 默认0，为1时返回缩略图信息 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileSearch'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileSearch200Response
      */
-    public function xpanFileSearch($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearch($dir, $device_id, $key = null, $page = 1, $num = null, $recursion = 1, $web = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
-        list($response) = $this->xpanFileSearchWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
+        list($response) = $this->xpanFileSearchWithHttpInfo($dir, $device_id, $key, $page, $num, $recursion, $web, $contentType);
         return $response;
     }
 
@@ -3691,21 +3559,21 @@ class DefaultApi
      * 搜索文件
      *
      * @param  string $dir 搜索目录，默认根目录 (required)
-     * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
-     * @param  int $num 默认为500，不能修改 (required)
-     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (required)
-     * @param  int $web 默认0，为1时返回缩略图信息 (required)
      * @param  string $device_id 设备ID，设备注册接口下发，硬件设备必传 (required)
      * @param  string $key 搜索关键字，最大30字符（UTF8格式） (optional)
+     * @param  int $page 页数，从1开始，缺省则返回所有条目 (optional, default to 1)
+     * @param  int $num 默认为500，不能修改 (optional)
+     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (optional, default to 1)
+     * @param  int $web 默认0，为1时返回缩略图信息 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileSearch'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileSearch200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileSearchWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchWithHttpInfo($dir, $device_id, $key = null, $page = 1, $num = null, $recursion = 1, $web = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
-        $request = $this->xpanFileSearchRequest($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
+        $request = $this->xpanFileSearchRequest($dir, $device_id, $key, $page, $num, $recursion, $web, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3797,20 +3665,20 @@ class DefaultApi
      * 搜索文件
      *
      * @param  string $dir 搜索目录，默认根目录 (required)
-     * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
-     * @param  int $num 默认为500，不能修改 (required)
-     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (required)
-     * @param  int $web 默认0，为1时返回缩略图信息 (required)
      * @param  string $device_id 设备ID，设备注册接口下发，硬件设备必传 (required)
      * @param  string $key 搜索关键字，最大30字符（UTF8格式） (optional)
+     * @param  int $page 页数，从1开始，缺省则返回所有条目 (optional, default to 1)
+     * @param  int $num 默认为500，不能修改 (optional)
+     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (optional, default to 1)
+     * @param  int $web 默认0，为1时返回缩略图信息 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileSearchAsync($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchAsync($dir, $device_id, $key = null, $page = 1, $num = null, $recursion = 1, $web = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
-        return $this->xpanFileSearchAsyncWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType)
+        return $this->xpanFileSearchAsyncWithHttpInfo($dir, $device_id, $key, $page, $num, $recursion, $web, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3824,21 +3692,21 @@ class DefaultApi
      * 搜索文件
      *
      * @param  string $dir 搜索目录，默认根目录 (required)
-     * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
-     * @param  int $num 默认为500，不能修改 (required)
-     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (required)
-     * @param  int $web 默认0，为1时返回缩略图信息 (required)
      * @param  string $device_id 设备ID，设备注册接口下发，硬件设备必传 (required)
      * @param  string $key 搜索关键字，最大30字符（UTF8格式） (optional)
+     * @param  int $page 页数，从1开始，缺省则返回所有条目 (optional, default to 1)
+     * @param  int $num 默认为500，不能修改 (optional)
+     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (optional, default to 1)
+     * @param  int $web 默认0，为1时返回缩略图信息 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileSearchAsyncWithHttpInfo($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchAsyncWithHttpInfo($dir, $device_id, $key = null, $page = 1, $num = null, $recursion = 1, $web = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileSearch200Response';
-        $request = $this->xpanFileSearchRequest($dir, $page, $num, $recursion, $web, $device_id, $key, $contentType);
+        $request = $this->xpanFileSearchRequest($dir, $device_id, $key, $page, $num, $recursion, $web, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3880,18 +3748,18 @@ class DefaultApi
      * Create request for operation 'xpanFileSearch'
      *
      * @param  string $dir 搜索目录，默认根目录 (required)
-     * @param  int $page 页数，从1开始，缺省则返回所有条目 (required)
-     * @param  int $num 默认为500，不能修改 (required)
-     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (required)
-     * @param  int $web 默认0，为1时返回缩略图信息 (required)
      * @param  string $device_id 设备ID，设备注册接口下发，硬件设备必传 (required)
      * @param  string $key 搜索关键字，最大30字符（UTF8格式） (optional)
+     * @param  int $page 页数，从1开始，缺省则返回所有条目 (optional, default to 1)
+     * @param  int $num 默认为500，不能修改 (optional)
+     * @param  int $recursion 是否递归搜索子目录 1:是，0:否（默认） (optional, default to 1)
+     * @param  int $web 默认0，为1时返回缩略图信息 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileSearch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileSearchRequest($dir, $page, $num, $recursion, $web, $device_id, $key = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
+    public function xpanFileSearchRequest($dir, $device_id, $key = null, $page = 1, $num = null, $recursion = 1, $web = null, string $contentType = self::contentTypes['xpanFileSearch'][0])
     {
 
         // verify the required parameter 'dir' is set
@@ -3901,40 +3769,16 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'page' is set
-        if ($page === null || (is_array($page) && count($page) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $page when calling xpanFileSearch'
-            );
-        }
-
-        // verify the required parameter 'num' is set
-        if ($num === null || (is_array($num) && count($num) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $num when calling xpanFileSearch'
-            );
-        }
-
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling xpanFileSearch'
-            );
-        }
-
-        // verify the required parameter 'web' is set
-        if ($web === null || (is_array($web) && count($web) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $web when calling xpanFileSearch'
-            );
-        }
-
         // verify the required parameter 'device_id' is set
         if ($device_id === null || (is_array($device_id) && count($device_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $device_id when calling xpanFileSearch'
             );
         }
+
+
+
+
 
 
 
@@ -3970,7 +3814,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -3979,7 +3823,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -3988,7 +3832,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -3997,7 +3841,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4064,7 +3908,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -4076,19 +3920,19 @@ class DefaultApi
      * 获取视频列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (required)
-     * @param  int $web 为1时返回视频预览缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (optional)
+     * @param  int $web 为1时返回视频预览缩略图 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileVideolist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response
      */
-    public function xpanFileVideolist($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolist($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, $web = 1, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
         list($response) = $this->xpanFileVideolistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
         return $response;
@@ -4100,19 +3944,19 @@ class DefaultApi
      * 获取视频列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (required)
-     * @param  int $web 为1时返回视频预览缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (optional)
+     * @param  int $web 为1时返回视频预览缩略图 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileVideolist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanFileVideolistWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistWithHttpInfo($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, $web = 1, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
         $request = $this->xpanFileVideolistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
 
@@ -4206,18 +4050,18 @@ class DefaultApi
      * 获取视频列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (required)
-     * @param  int $web 为1时返回视频预览缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (optional)
+     * @param  int $web 为1时返回视频预览缩略图 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileVideolist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileVideolistAsync($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistAsync($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, $web = 1, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
         return $this->xpanFileVideolistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType)
             ->then(
@@ -4233,18 +4077,18 @@ class DefaultApi
      * 获取视频列表
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (required)
-     * @param  int $web 为1时返回视频预览缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (optional)
+     * @param  int $web 为1时返回视频预览缩略图 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileVideolist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanFileVideolistAsyncWithHttpInfo($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistAsyncWithHttpInfo($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, $web = 1, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanFileDoclist200Response';
         $request = $this->xpanFileVideolistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, $contentType);
@@ -4289,18 +4133,18 @@ class DefaultApi
      * Create request for operation 'xpanFileVideolist'
      *
      * @param  string $parent_path 目录名称，以/开头的绝对路径, 默认为/ 路径包含中文时需要UrlEncode编码 给出的示例的路径是/测试目录的UrlEncode编码 (required)
-     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (required)
-     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
-     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (required)
-     * @param  int $web 为1时返回视频预览缩略图 (required)
+     * @param  int $page 页码，从1开始， 如果不指定页码，则为不分页模式，返回所有的结果。如果指定page参数，则按修改时间倒序排列 (optional, default to 1)
+     * @param  int $num 一页返回的文件数， 默认值为1000, 最大值建议不超过1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
+     * @param  int $recursion 是否需要递归，0为不需要，1为需要，默认为0 递归是指：当目录下有文件夹，使用此参数，可以获取到文件夹下面的视频 (optional)
+     * @param  int $web 为1时返回视频预览缩略图 (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanFileVideolist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanFileVideolistRequest($parent_path, $page, $num, $order, $desc, $recursion, $web, string $contentType = self::contentTypes['xpanFileVideolist'][0])
+    public function xpanFileVideolistRequest($parent_path, $page = 1, $num = null, $order = 'name', $desc = '0', $recursion = null, $web = 1, string $contentType = self::contentTypes['xpanFileVideolist'][0])
     {
 
         // verify the required parameter 'parent_path' is set
@@ -4310,47 +4154,11 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'page' is set
-        if ($page === null || (is_array($page) && count($page) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $page when calling xpanFileVideolist'
-            );
-        }
 
-        // verify the required parameter 'num' is set
-        if ($num === null || (is_array($num) && count($num) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $num when calling xpanFileVideolist'
-            );
-        }
 
-        // verify the required parameter 'order' is set
-        if ($order === null || (is_array($order) && count($order) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order when calling xpanFileVideolist'
-            );
-        }
 
-        // verify the required parameter 'desc' is set
-        if ($desc === null || (is_array($desc) && count($desc) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $desc when calling xpanFileVideolist'
-            );
-        }
 
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling xpanFileVideolist'
-            );
-        }
 
-        // verify the required parameter 'web' is set
-        if ($web === null || (is_array($web) && count($web) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $web when calling xpanFileVideolist'
-            );
-        }
 
 
         $resourcePath = '/rest/2.0/xpan/file?method=videolist';
@@ -4376,7 +4184,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4385,7 +4193,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4394,7 +4202,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4403,7 +4211,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4412,7 +4220,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4421,7 +4229,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
 
 
@@ -4479,7 +4287,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -4492,22 +4300,22 @@ class DefaultApi
      *
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
-     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
      * @param  string $ext 需要的文件格式，多个格式以英文逗号分隔，示例: txt,epub，默认为category下所有格式 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，最大1000，默认1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子多个category使用英文逗号分隔，示例：3,4 (optional)
+     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (optional)
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，最大1000，默认1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaCategorylist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanMultimediaCategorylist200Response
      */
-    public function xpanMultimediaCategorylist($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylist($show_dir, $parent_path, $ext, $category = null, $recursion = null, $start = null, $limit = null, $order = 'name', $desc = '0', string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
-        list($response) = $this->xpanMultimediaCategorylistWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
+        list($response) = $this->xpanMultimediaCategorylistWithHttpInfo($show_dir, $parent_path, $ext, $category, $recursion, $start, $limit, $order, $desc, $contentType);
         return $response;
     }
 
@@ -4518,22 +4326,22 @@ class DefaultApi
      *
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
-     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
      * @param  string $ext 需要的文件格式，多个格式以英文逗号分隔，示例: txt,epub，默认为category下所有格式 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，最大1000，默认1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子多个category使用英文逗号分隔，示例：3,4 (optional)
+     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (optional)
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，最大1000，默认1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaCategorylist'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanMultimediaCategorylist200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanMultimediaCategorylistWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistWithHttpInfo($show_dir, $parent_path, $ext, $category = null, $recursion = null, $start = null, $limit = null, $order = 'name', $desc = '0', string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
-        $request = $this->xpanMultimediaCategorylistRequest($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
+        $request = $this->xpanMultimediaCategorylistRequest($show_dir, $parent_path, $ext, $category, $recursion, $start, $limit, $order, $desc, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4626,21 +4434,21 @@ class DefaultApi
      *
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
-     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
      * @param  string $ext 需要的文件格式，多个格式以英文逗号分隔，示例: txt,epub，默认为category下所有格式 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，最大1000，默认1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子多个category使用英文逗号分隔，示例：3,4 (optional)
+     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (optional)
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，最大1000，默认1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaCategorylist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaCategorylistAsync($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistAsync($show_dir, $parent_path, $ext, $category = null, $recursion = null, $start = null, $limit = null, $order = 'name', $desc = '0', string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
-        return $this->xpanMultimediaCategorylistAsyncWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType)
+        return $this->xpanMultimediaCategorylistAsyncWithHttpInfo($show_dir, $parent_path, $ext, $category, $recursion, $start, $limit, $order, $desc, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4655,22 +4463,22 @@ class DefaultApi
      *
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
-     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
      * @param  string $ext 需要的文件格式，多个格式以英文逗号分隔，示例: txt,epub，默认为category下所有格式 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，最大1000，默认1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子多个category使用英文逗号分隔，示例：3,4 (optional)
+     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (optional)
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，最大1000，默认1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaCategorylist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaCategorylistAsyncWithHttpInfo($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistAsyncWithHttpInfo($show_dir, $parent_path, $ext, $category = null, $recursion = null, $start = null, $limit = null, $order = 'name', $desc = '0', string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanMultimediaCategorylist200Response';
-        $request = $this->xpanMultimediaCategorylistRequest($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category, $contentType);
+        $request = $this->xpanMultimediaCategorylistRequest($show_dir, $parent_path, $ext, $category, $recursion, $start, $limit, $order, $desc, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4713,19 +4521,19 @@ class DefaultApi
      *
      * @param  int $show_dir 是否展示文件夹，0:否(默认) 1:是 (required)
      * @param  string $parent_path 目录名称，为空时，parent_path &#x3D; \&quot;/\&quot; &amp;&amp; recursion &#x3D; 1 ；路径包含中文时需要进行UrlEncode编码 (required)
-     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (required)
      * @param  string $ext 需要的文件格式，多个格式以英文逗号分隔，示例: txt,epub，默认为category下所有格式 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，最大1000，默认1000 (required)
-     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (required)
-     * @param  string $desc 0为升序，1为降序，默认为1 (required)
      * @param  int $category 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子多个category使用英文逗号分隔，示例：3,4 (optional)
+     * @param  int $recursion 是否需要递归，0 不递归、1 递归，默认0 (optional)
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，最大1000，默认1000 (optional)
+     * @param  string $order 排序字段：time按修改时间排序，name按文件名称排序，size按文件大小排序，默认为time (optional, default to 'name')
+     * @param  string $desc 0为升序，1为降序，默认为1 (optional, default to '0')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaCategorylist'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanMultimediaCategorylistRequest($show_dir, $parent_path, $recursion, $ext, $start, $limit, $order, $desc, $category = null, string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
+    public function xpanMultimediaCategorylistRequest($show_dir, $parent_path, $ext, $category = null, $recursion = null, $start = null, $limit = null, $order = 'name', $desc = '0', string $contentType = self::contentTypes['xpanMultimediaCategorylist'][0])
     {
 
         // verify the required parameter 'show_dir' is set
@@ -4742,13 +4550,6 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling xpanMultimediaCategorylist'
-            );
-        }
-
         // verify the required parameter 'ext' is set
         if ($ext === null || (is_array($ext) && count($ext) === 0)) {
             throw new \InvalidArgumentException(
@@ -4756,33 +4557,10 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'start' is set
-        if ($start === null || (is_array($start) && count($start) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $start when calling xpanMultimediaCategorylist'
-            );
-        }
 
-        // verify the required parameter 'limit' is set
-        if ($limit === null || (is_array($limit) && count($limit) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $limit when calling xpanMultimediaCategorylist'
-            );
-        }
 
-        // verify the required parameter 'order' is set
-        if ($order === null || (is_array($order) && count($order) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order when calling xpanMultimediaCategorylist'
-            );
-        }
 
-        // verify the required parameter 'desc' is set
-        if ($desc === null || (is_array($desc) && count($desc) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $desc when calling xpanMultimediaCategorylist'
-            );
-        }
+
 
 
 
@@ -4827,7 +4605,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4845,7 +4623,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4854,7 +4632,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4863,7 +4641,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -4872,7 +4650,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
 
 
@@ -4930,7 +4708,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -4941,21 +4719,21 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
-     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
-     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (required)
-     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (required)
      * @param  string[] $fsids 文件id数组，数组中元素是uint64类型，数组大小上限是：100 (optional)
+     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (optional)
+     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (optional)
+     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (optional)
+     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaFilemetas'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanMultimediaFilemetas200Response
      */
-    public function xpanMultimediaFilemetas($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetas($path, $fsids = null, $dlink = null, $thumb = null, $extra = null, $needmedia = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-        list($response) = $this->xpanMultimediaFilemetasWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
+        list($response) = $this->xpanMultimediaFilemetasWithHttpInfo($path, $fsids, $dlink, $thumb, $extra, $needmedia, $contentType);
         return $response;
     }
 
@@ -4964,21 +4742,21 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
-     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
-     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (required)
-     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (required)
      * @param  string[] $fsids 文件id数组，数组中元素是uint64类型，数组大小上限是：100 (optional)
+     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (optional)
+     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (optional)
+     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (optional)
+     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaFilemetas'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanMultimediaFilemetas200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanMultimediaFilemetasWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasWithHttpInfo($path, $fsids = null, $dlink = null, $thumb = null, $extra = null, $needmedia = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-        $request = $this->xpanMultimediaFilemetasRequest($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
+        $request = $this->xpanMultimediaFilemetasRequest($path, $fsids, $dlink, $thumb, $extra, $needmedia, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5069,20 +4847,20 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
-     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
-     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (required)
-     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (required)
      * @param  string[] $fsids 文件id数组，数组中元素是uint64类型，数组大小上限是：100 (optional)
+     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (optional)
+     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (optional)
+     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (optional)
+     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaFilemetas'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaFilemetasAsync($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasAsync($path, $fsids = null, $dlink = null, $thumb = null, $extra = null, $needmedia = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-        return $this->xpanMultimediaFilemetasAsyncWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType)
+        return $this->xpanMultimediaFilemetasAsyncWithHttpInfo($path, $fsids, $dlink, $thumb, $extra, $needmedia, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5095,21 +4873,21 @@ class DefaultApi
      *
      * 查询文件信息
      *
-     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
-     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
-     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (required)
-     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (required)
      * @param  string[] $fsids 文件id数组，数组中元素是uint64类型，数组大小上限是：100 (optional)
+     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (optional)
+     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (optional)
+     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (optional)
+     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaFilemetas'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaFilemetasAsyncWithHttpInfo($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasAsyncWithHttpInfo($path, $fsids = null, $dlink = null, $thumb = null, $extra = null, $needmedia = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanMultimediaFilemetas200Response';
-        $request = $this->xpanMultimediaFilemetasRequest($dlink, $path, $thumb, $extra, $needmedia, $fsids, $contentType);
+        $request = $this->xpanMultimediaFilemetasRequest($path, $fsids, $dlink, $thumb, $extra, $needmedia, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5150,26 +4928,19 @@ class DefaultApi
     /**
      * Create request for operation 'xpanMultimediaFilemetas'
      *
-     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (required)
      * @param  string $path 查询共享目录或专属空间内文件时需要。共享目录格式： /uk-fsid 其中uk为共享目录创建者id， fsid对应共享目录的fsid 专属空间格式：/_pcs_.appdata/xpan/ (required)
-     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (required)
-     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (required)
-     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (required)
      * @param  string[] $fsids 文件id数组，数组中元素是uint64类型，数组大小上限是：100 (optional)
+     * @param  int $dlink 是否需要下载地址，0为否，1为是，默认为0。获取到dlink后，参考下载文档进行下载操作 (optional)
+     * @param  int $thumb 是否需要缩略图地址，0为否，1为是，默认为0 (optional)
+     * @param  int $extra 图片是否需要拍摄时间、原图分辨率等其他信息，0 否、1 是，默认0 (optional)
+     * @param  int $needmedia 视频是否需要展示时长信息，needmedia&#x3D;1时，返回 duration 信息时间单位为秒 （s），转换为向上取整。0 否、1 是，默认0 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaFilemetas'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanMultimediaFilemetasRequest($dlink, $path, $thumb, $extra, $needmedia, $fsids = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
+    public function xpanMultimediaFilemetasRequest($path, $fsids = null, $dlink = null, $thumb = null, $extra = null, $needmedia = null, string $contentType = self::contentTypes['xpanMultimediaFilemetas'][0])
     {
-
-        // verify the required parameter 'dlink' is set
-        if ($dlink === null || (is_array($dlink) && count($dlink) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $dlink when calling xpanMultimediaFilemetas'
-            );
-        }
 
         // verify the required parameter 'path' is set
         if ($path === null || (is_array($path) && count($path) === 0)) {
@@ -5178,26 +4949,9 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'thumb' is set
-        if ($thumb === null || (is_array($thumb) && count($thumb) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $thumb when calling xpanMultimediaFilemetas'
-            );
-        }
 
-        // verify the required parameter 'extra' is set
-        if ($extra === null || (is_array($extra) && count($extra) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $extra when calling xpanMultimediaFilemetas'
-            );
-        }
 
-        // verify the required parameter 'needmedia' is set
-        if ($needmedia === null || (is_array($needmedia) && count($needmedia) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $needmedia when calling xpanMultimediaFilemetas'
-            );
-        }
+
 
 
 
@@ -5224,7 +4978,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -5242,7 +4996,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -5251,7 +5005,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -5260,7 +5014,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
 
 
@@ -5318,7 +5072,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -5329,24 +5083,24 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
-     * @param  string $desc 0为升序，1为降序，默认为0 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (required)
      * @param  int $ctime 文件上传时间，设置此参数，表示只返回上传时间大于ctime的文件 (required)
      * @param  int $mtime 文件修改时间，设置此参数，表示只返回修改时间大于mtime的文件 (required)
-     * @param  int $web 默认为0， 为1时返回缩略图地址 (required)
      * @param  string $path 目录名称绝对路径，必须/开头；路径包含中文时需要UrlEncode编码 ；给出的示例的路径是/测试目录的UrlEncode编码。 (optional)
+     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (optional)
+     * @param  string $desc 0为升序，1为降序，默认为0 (optional, default to '0')
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (optional)
+     * @param  int $web 默认为0， 为1时返回缩略图地址 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaListall'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Clainy\OpenxpanApiClient\Model\XpanMultimediaListall200Response
      */
-    public function xpanMultimediaListall($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListall($order, $ctime, $mtime, $path = null, $recursion = null, $desc = '0', $start = null, $limit = null, $web = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-        list($response) = $this->xpanMultimediaListallWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
+        list($response) = $this->xpanMultimediaListallWithHttpInfo($order, $ctime, $mtime, $path, $recursion, $desc, $start, $limit, $web, $contentType);
         return $response;
     }
 
@@ -5355,24 +5109,24 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
-     * @param  string $desc 0为升序，1为降序，默认为0 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (required)
      * @param  int $ctime 文件上传时间，设置此参数，表示只返回上传时间大于ctime的文件 (required)
      * @param  int $mtime 文件修改时间，设置此参数，表示只返回修改时间大于mtime的文件 (required)
-     * @param  int $web 默认为0， 为1时返回缩略图地址 (required)
      * @param  string $path 目录名称绝对路径，必须/开头；路径包含中文时需要UrlEncode编码 ；给出的示例的路径是/测试目录的UrlEncode编码。 (optional)
+     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (optional)
+     * @param  string $desc 0为升序，1为降序，默认为0 (optional, default to '0')
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (optional)
+     * @param  int $web 默认为0， 为1时返回缩略图地址 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaListall'] to see the possible values for this operation
      *
      * @throws \Clainy\OpenxpanApiClient\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Clainy\OpenxpanApiClient\Model\XpanMultimediaListall200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function xpanMultimediaListallWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallWithHttpInfo($order, $ctime, $mtime, $path = null, $recursion = null, $desc = '0', $start = null, $limit = null, $web = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-        $request = $this->xpanMultimediaListallRequest($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
+        $request = $this->xpanMultimediaListallRequest($order, $ctime, $mtime, $path, $recursion, $desc, $start, $limit, $web, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5463,23 +5217,23 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
-     * @param  string $desc 0为升序，1为降序，默认为0 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (required)
      * @param  int $ctime 文件上传时间，设置此参数，表示只返回上传时间大于ctime的文件 (required)
      * @param  int $mtime 文件修改时间，设置此参数，表示只返回修改时间大于mtime的文件 (required)
-     * @param  int $web 默认为0， 为1时返回缩略图地址 (required)
      * @param  string $path 目录名称绝对路径，必须/开头；路径包含中文时需要UrlEncode编码 ；给出的示例的路径是/测试目录的UrlEncode编码。 (optional)
+     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (optional)
+     * @param  string $desc 0为升序，1为降序，默认为0 (optional, default to '0')
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (optional)
+     * @param  int $web 默认为0， 为1时返回缩略图地址 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaListall'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaListallAsync($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallAsync($order, $ctime, $mtime, $path = null, $recursion = null, $desc = '0', $start = null, $limit = null, $web = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-        return $this->xpanMultimediaListallAsyncWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType)
+        return $this->xpanMultimediaListallAsyncWithHttpInfo($order, $ctime, $mtime, $path, $recursion, $desc, $start, $limit, $web, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5492,24 +5246,24 @@ class DefaultApi
      *
      * 递归获取文件列表
      *
-     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
-     * @param  string $desc 0为升序，1为降序，默认为0 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (required)
      * @param  int $ctime 文件上传时间，设置此参数，表示只返回上传时间大于ctime的文件 (required)
      * @param  int $mtime 文件修改时间，设置此参数，表示只返回修改时间大于mtime的文件 (required)
-     * @param  int $web 默认为0， 为1时返回缩略图地址 (required)
      * @param  string $path 目录名称绝对路径，必须/开头；路径包含中文时需要UrlEncode编码 ；给出的示例的路径是/测试目录的UrlEncode编码。 (optional)
+     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (optional)
+     * @param  string $desc 0为升序，1为降序，默认为0 (optional, default to '0')
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (optional)
+     * @param  int $web 默认为0， 为1时返回缩略图地址 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaListall'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function xpanMultimediaListallAsyncWithHttpInfo($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallAsyncWithHttpInfo($order, $ctime, $mtime, $path = null, $recursion = null, $desc = '0', $start = null, $limit = null, $web = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
         $returnType = '\Clainy\OpenxpanApiClient\Model\XpanMultimediaListall200Response';
-        $request = $this->xpanMultimediaListallRequest($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path, $contentType);
+        $request = $this->xpanMultimediaListallRequest($order, $ctime, $mtime, $path, $recursion, $desc, $start, $limit, $web, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5550,55 +5304,27 @@ class DefaultApi
     /**
      * Create request for operation 'xpanMultimediaListall'
      *
-     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (required)
      * @param  string $order 排序字段:time(修改时间)，name(文件名)，size(大小，目录无大小)，默认为文件类型 (required)
-     * @param  string $desc 0为升序，1为降序，默认为0 (required)
-     * @param  int $start 查询起点，默认为0 (required)
-     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (required)
      * @param  int $ctime 文件上传时间，设置此参数，表示只返回上传时间大于ctime的文件 (required)
      * @param  int $mtime 文件修改时间，设置此参数，表示只返回修改时间大于mtime的文件 (required)
-     * @param  int $web 默认为0， 为1时返回缩略图地址 (required)
      * @param  string $path 目录名称绝对路径，必须/开头；路径包含中文时需要UrlEncode编码 ；给出的示例的路径是/测试目录的UrlEncode编码。 (optional)
+     * @param  int $recursion 是否递归，0为否，1为是，默认为0 (optional)
+     * @param  string $desc 0为升序，1为降序，默认为0 (optional, default to '0')
+     * @param  int $start 查询起点，默认为0 (optional)
+     * @param  int $limit 查询数目，默认为1000；如果设置start和limit参数，则建议最大设置为1000 (optional)
+     * @param  int $web 默认为0， 为1时返回缩略图地址 (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['xpanMultimediaListall'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function xpanMultimediaListallRequest($recursion, $order, $desc, $start, $limit, $ctime, $mtime, $web, $path = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
+    public function xpanMultimediaListallRequest($order, $ctime, $mtime, $path = null, $recursion = null, $desc = '0', $start = null, $limit = null, $web = null, string $contentType = self::contentTypes['xpanMultimediaListall'][0])
     {
-
-        // verify the required parameter 'recursion' is set
-        if ($recursion === null || (is_array($recursion) && count($recursion) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $recursion when calling xpanMultimediaListall'
-            );
-        }
 
         // verify the required parameter 'order' is set
         if ($order === null || (is_array($order) && count($order) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $order when calling xpanMultimediaListall'
-            );
-        }
-
-        // verify the required parameter 'desc' is set
-        if ($desc === null || (is_array($desc) && count($desc) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $desc when calling xpanMultimediaListall'
-            );
-        }
-
-        // verify the required parameter 'start' is set
-        if ($start === null || (is_array($start) && count($start) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $start when calling xpanMultimediaListall'
-            );
-        }
-
-        // verify the required parameter 'limit' is set
-        if ($limit === null || (is_array($limit) && count($limit) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $limit when calling xpanMultimediaListall'
             );
         }
 
@@ -5616,12 +5342,10 @@ class DefaultApi
             );
         }
 
-        // verify the required parameter 'web' is set
-        if ($web === null || (is_array($web) && count($web) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $web when calling xpanMultimediaListall'
-            );
-        }
+
+
+
+
 
 
 
@@ -5648,7 +5372,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -5666,7 +5390,7 @@ class DefaultApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -5675,7 +5399,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -5684,7 +5408,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -5711,7 +5435,7 @@ class DefaultApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
 
 
@@ -5769,7 +5493,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );
@@ -6037,7 +5761,7 @@ class DefaultApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" :"") . $query,
+            $operationHost . $resourcePath . ((!str_contains($resourcePath, "?") && $query) ? "?" : "&") . $query,
             $headers,
             $httpBody
         );

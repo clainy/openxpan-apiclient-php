@@ -62,11 +62,11 @@ $apiInstance = new Clainy\OpenxpanApiClient\Api\DefaultApi(
     $config
 );
 $parent_path = 'parent_path_example'; // string | 目录名称，为空时，parent_path = \"/\" && recursion = 1
+$category = 1; // int | 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子
 $recursion = 56; // int | 是否递归，0 不递归、1 递归，默认0
-$category = 56; // int | 文件类型，1 视频、2 音频、3 图片、4 文档、5 应用、6 其他、7 种子
 
 try {
-    $result = $apiInstance->apiCategoryinfo($parent_path, $recursion, $category);
+    $result = $apiInstance->apiCategoryinfo($parent_path, $category, $recursion);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->apiCategoryinfo: ', $e->getMessage(), PHP_EOL;
